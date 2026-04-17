@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><link rel="icon" href="data:image/x-icon;base64,AAABAAIAEBAAAAAAIAChAgAAJgAAACAgAAAAACAASAEAAMcCAACJUE5HDQoaCgAAAA1JSERSAAAAEAAAABAIBgAAAB/z/2EAAAJoSURBVHicbZPPaxNBFMc/b3czu+kmTWOiFjwU0Z6KCqJCD3qoRerBWA8eKp56EDz2Wu9eRPEH9g+QgkWLh56KqFAUClqMqAdFUUEKoq2/+iPZZHefh02aBjswDMy873fmvfk8AUhnCyXLkvuADdiIsOVQBYiAKI71bGVleUYyXYXTqnIX8ACwRAgjiBWaPgpYAo4NceICVEV0RPxcUTeFCZUAOn3UM22XS7UGf9cg7bZiAaclFiEICI8fJrh8Efm2DFGcnNoW2l3EHb+NM1cG1whxrIAkBpYlsrJGMHaO+ugpzMQ0zsxTiKKGgU1YOkpwbQy9dQ8zMYUWCkmqfq6ofq6omUxe7RuX1C2d0Ayony2o7+fVdzvV7yxqBlFvaEB5Na3esf5kP79DN9cA4hjCCDo8CGrgGjSfRRZ/gN+BLP1k/cEVrHdf8MZvosVCowYiENSTNe1BPQSTIrhwBopdOLPzOM/KaNrFXJ8C10E9D6IYqymO+nqIendBNYA4RvOd6PYurA9fifbvhUoAGR/7+VvsuTJ4aYgVC0uQao1w325qpX4kCMFzkcXvpGbnUd/DTM6iuSysV8E1SYoNHCxiRT2D8/Ij8c484aFeZOk3mBTO4wXcq3dgdR35s0p4YA/VkQEkjDbK5qAKnsF5/QnzcIHq6BCmexvOi/eon04IVKgPHqR28gipJ+WkRo4HGtP8BUUShMO+HoLzg8ivlYQ3EuY0n8WdfITz5jOknA0a/0e5FkLaoCbVjnKtDpUamJa40To6DFQ2TNwU1CNkrdI2qUfgpppigIqIDgts0c6NZ29OgRZube38D3K3BZhBdFTKAAAAAElFTkSuQmCCiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABD0lEQVR4nO1XsRHDIAwUunQUaTKTx/AG3sE7ZIOMkZnSuKBOmnCncIBeYOMmX2ED+hd667CjBP56e6fv9kTYXk4+80jyHAeXJkaJ4NHkqQh3BrkE60uOxQVdGJ53U2A/LdA66ASs5JY9VQ/kgmiZWffAJUCPNK5DT6BYAhkAJc8J0cQUBcQALeQWEVUT9pCjOLwPaEnAJsyh1ydEHa04kvtp+Rlb0VWCPYyaFRDWmcI6q5tj5i2dsioAQdpwdvWAzN6vj6bAKA7/DLVSZgXIrBEvaOS1GOVW3CkCLSN+IfkG1DxhFQs1otYyIAaGTNjyJaB7/rdiTv/VRiJsL8dxcAY5kSjBSBGSi0sTI8iJiD73WHg6HgTkTAAAAABJRU5ErkJggg=="/><link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Page Not Found — Accordly</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Epilogue:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--border:rgba(255,255,255,0.07);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Epilogue',sans-serif}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;text-align:center;position:relative;overflow:hidden}
+
+/* background atmosphere */
+.bg-dots{position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:40px 40px;z-index:0;pointer-events:none}
+.bg-glow{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,201,167,0.06),transparent 70%);z-index:0;pointer-events:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-home{padding:0.45rem 1.1rem;border-radius:8px;background:var(--teal);color:#0b0f14;font-size:0.82rem;font-weight:700;text-decoration:none;transition:opacity 0.2s}.nav-home:hover{opacity:0.9}
+
+.content{position:relative;z-index:1;max-width:560px}
+
+/* animated icon */
+.err-icon{position:relative;width:120px;height:120px;margin:0 auto 2rem;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.ei-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(0,201,167,0.2);animation:pulse-ring 3s ease-in-out infinite}
+.ei-ring:nth-child(2){inset:-12px;border-color:rgba(0,201,167,0.1);animation-delay:0.5s}
+.ei-ring:nth-child(3){inset:-24px;border-color:rgba(0,201,167,0.05);animation-delay:1s}
+@keyframes pulse-ring{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.05)}}
+.ei-center{position:absolute;inset:0;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+.ei-number{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--teal)}
+
+h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:0.75rem;letter-spacing:-0.02em}
+h1 em{font-style:normal;color:var(--teal)}
+p{font-size:0.95rem;color:var(--text2);line-height:1.7;margin-bottom:2.5rem;max-width:420px;margin-left:auto;margin-right:auto}
+
+.nav-links{display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:3rem}
+.nl-link{padding:0.55rem 1.1rem;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:0.82rem;text-decoration:none;transition:all 0.2s}
+.nl-link:hover{border-color:rgba(0,201,167,0.3);color:var(--teal)}
+.nl-link.primary{background:var(--teal);border-color:var(--teal);color:#0b0f14;font-weight:700}
+.nl-link.primary:hover{opacity:0.9}
+
+.tagline{font-size:0.75rem;color:var(--muted)}
+.tagline strong{color:var(--teal)}
+</style>
+</head>
+<body>
+<div class="bg-dots"></div>
+<div class="bg-glow"></div>
+
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <a class="nav-home" href="/">← Go Home</a>
+</nav>
+
+<div class="content">
+  <div class="err-icon">
+    <div class="ei-ring"></div>
+    <div class="ei-ring"></div>
+    <div class="ei-ring"></div>
+    <div class="ei-center"><div class="ei-number">404</div></div>
+  </div>
+
+  <h1>Page <em>not found.</em></h1>
+  <p>This page does not exist or may have moved. Every parent deserves a clear path forward — let us help you find yours.</p>
+
+  <div class="nav-links">
+    <a class="nl-link primary" href="/">🏠 Go Home</a>
+    <a class="nl-link" href="/features">Features</a>
+    <a class="nl-link" href="/how-it-works">How It Works</a>
+    <a class="nl-link" href="/pricing">Pricing</a>
+    <a class="nl-link" href="/about">About</a>
+    <a class="nl-link" href="/early-access">Early Access</a>
+  </div>
+
+  <div class="tagline">
+    <strong>Accordly</strong> · Co-Parenting, Protected. · Patent Pending
+  </div>
+</div>
+
+  <div style="margin-top:1rem"><a href="https://weather.com" style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.72rem;font-weight:700;color:#ff5c5c;border:1px solid rgba(255,92,92,0.25);padding:0.3rem 0.75rem;border-radius:6px;background:rgba(255,92,92,0.1);text-decoration:none">⚡ Safe Exit</a></div>
+
+</body>
+</html>

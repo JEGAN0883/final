@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><link rel="icon" href="data:image/x-icon;base64,AAABAAIAEBAAAAAAIAChAgAAJgAAACAgAAAAACAASAEAAMcCAACJUE5HDQoaCgAAAA1JSERSAAAAEAAAABAIBgAAAB/z/2EAAAJoSURBVHicbZPPaxNBFMc/b3czu+kmTWOiFjwU0Z6KCqJCD3qoRerBWA8eKp56EDz2Wu9eRPEH9g+QgkWLh56KqFAUClqMqAdFUUEKoq2/+iPZZHefh02aBjswDMy873fmvfk8AUhnCyXLkvuADdiIsOVQBYiAKI71bGVleUYyXYXTqnIX8ACwRAgjiBWaPgpYAo4NceICVEV0RPxcUTeFCZUAOn3UM22XS7UGf9cg7bZiAaclFiEICI8fJrh8Efm2DFGcnNoW2l3EHb+NM1cG1whxrIAkBpYlsrJGMHaO+ugpzMQ0zsxTiKKGgU1YOkpwbQy9dQ8zMYUWCkmqfq6ofq6omUxe7RuX1C2d0Ayony2o7+fVdzvV7yxqBlFvaEB5Na3esf5kP79DN9cA4hjCCDo8CGrgGjSfRRZ/gN+BLP1k/cEVrHdf8MZvosVCowYiENSTNe1BPQSTIrhwBopdOLPzOM/KaNrFXJ8C10E9D6IYqymO+nqIendBNYA4RvOd6PYurA9fifbvhUoAGR/7+VvsuTJ4aYgVC0uQao1w325qpX4kCMFzkcXvpGbnUd/DTM6iuSysV8E1SYoNHCxiRT2D8/Ij8c484aFeZOk3mBTO4wXcq3dgdR35s0p4YA/VkQEkjDbK5qAKnsF5/QnzcIHq6BCmexvOi/eon04IVKgPHqR28gipJ+WkRo4HGtP8BUUShMO+HoLzg8ivlYQ3EuY0n8WdfITz5jOknA0a/0e5FkLaoCbVjnKtDpUamJa40To6DFQ2TNwU1CNkrdI2qUfgpppigIqIDgts0c6NZ29OgRZube38D3K3BZhBdFTKAAAAAElFTkSuQmCCiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABD0lEQVR4nO1XsRHDIAwUunQUaTKTx/AG3sE7ZIOMkZnSuKBOmnCncIBeYOMmX2ED+hd667CjBP56e6fv9kTYXk4+80jyHAeXJkaJ4NHkqQh3BrkE60uOxQVdGJ53U2A/LdA66ASs5JY9VQ/kgmiZWffAJUCPNK5DT6BYAhkAJc8J0cQUBcQALeQWEVUT9pCjOLwPaEnAJsyh1ydEHa04kvtp+Rlb0VWCPYyaFRDWmcI6q5tj5i2dsioAQdpwdvWAzN6vj6bAKA7/DLVSZgXIrBEvaOS1GOVW3CkCLSN+IfkG1DxhFQs1otYyIAaGTNjyJaB7/rdiTv/VRiJsL8dxcAY5kSjBSBGSi0sTI8iJiD73WHg6HgTkTAAAAABJRU5ErkJggg=="/><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFqElEQVR4nO2dy5HcOBAFoY29zWEva5PMkAfyYXyQB2uG/Jq7DohlMLpZ3SAJoF6hMo+SYoQqZD8A/PR8+/jn3wJwxF/eAwBdkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANMkANM/vYewFS+fv+6+RM+vv/sMpIQfFv+dcj7QlgsL8qacowTwmJJUVaTY74WexZTZAU5fIWwWECU8KcVTTOK8MDaCSlH7fvX71/iE7CNUHycFsGWlaBd3oi11oSRI7oWe6IoEmNZWcmMEqccdTmi9PEs+humIr6s6LfvPspLjLQcpbcf92dCbTxD0ZWj1zSMmwD9Ed5EVI5Yt09jjbYdRTnu9Nq3y3FHfoicHJf7q9PcBUqoaMlxoa1qDd0TvRwVOaL30eJaioiUJnERbFUzSikf33/WoZ4asMgFHv/kONuIKFo8E65STznCNasLgap2W1YC9agvZwtxXGJ85EhrRiWKHw5yJDejEsIP6ZealtRio1YncjA5ZHZytPdibTM22sucr9FsORp7kcSMiqwfU+VofPwplRkVzZIlrpA+oLwMD6K95JnNUbwIpvkxGk3jrM9sjvPl8+eO5DSjorZbd15WHorMbEbRK99/z6HWkRDM2Xn4y1H+9wNLitixVkKOghk7dFqhIgdcYHR4IIciIuHh/yQYvMD3gjLJASbIIU1LKozbeSCHNL63mZBDGt+dKXKswKCAQQ51Mr6aAH0ZER7IASbIEQCvlQU5wITL56UYC7bIDY6N+ZfSpV9qGs3rdm9/q2bJNJLKcWpvX/9xQkUy7jmunfoSvjCRTo47c5zNj1wb0i6zK7K+TFjsEiVHr899nvzIIkffGU3iR9LTyjMP+Zxk+l+TIjlez/T2bZBv/7D9Z65BCjle8NoAkb2nF6nlaJl7WT/eZtt91pdjXP4vv7KsL4dF+8dONjxGk1cOeAtygAlygAlygEleOTS/wE+KsXJ8ff74+vwx9L94y7izxvKnmLzJUdoiIW1slORylObHSHOSQo63t9CeJXj7TdzLrymFW/YbyUPikBTJUXp/0DPERun+DGnL2eTj87+O/+MpVnqGdAJZkqNyf17zmFGyyVHuzW4qM0pCOcrVOc5mRkl7Wjn1y/cSalHp/1KT+J70kBBv2c8naXI8gAeHOP1Gau+7cdBCxg0pNNJfDrX9BFzGLTlYWfQZIgfhsQaeew7CQxxPOQgYcUbJ0TLxJIc4HGXBZOx3gjVmA+uLJhLJwfqiyVg5iITQSCRHITx26LRiuBzt4aHTFEdqE0RaMSM5WFwuoOCHyrJSUeiIIw/lu3dj6tdbc7J9gdUcx27Mk+PU5yCbH+3NmdmZectKe1XZzCiqJWvtOSrua+18Gp/KnuzQVDk41h7SWOz8nsxODvx4QHO3UZF+NaE2TnM9vo++/Q57jrOTrd/EC5wtyuUT4rMhTe5HCDOK42klrR9RzCgKvwAwULNuEq5S/+scF1oQLkUufB+ruxlFITkq1+ZboYNvuVCaSF0qclTi9vGQ6OVoyVFuLBk6bV2ghIqcHOXelsK3v3FHfoiiHKXHlnNmr2ONth1ROUq/I8m4vuuP8Ca6clT6nlrvT4PaeIYiLUe46xkXUPbD/yLYC5Qbd5NamniB0smxsV6EiGtRkU6OjRCtbCdKOTGSYyN6hETRohIjOTa2h2wDdXkbcKAxV4IlxzPKWRLOhgeCJcczshMgO7B2wifHA75BsoAQe1aTozJfkcW0qKwpx55xoiwpxJ715diz6u3TQeSSA04R/rQC40AOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMEEOMPkDxxICooF0fxcAAAAASUVORK5CYII="/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>How It Works — Accordly</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--red:#ff5c5c;--orange:#ff8c42;}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{color:var(--text);font-family:'Epilogue',sans-serif;overflow-x:hidden;background:var(--bg)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-center{display:flex;gap:2rem}.nav-link{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s}.nav-link:hover,.nav-link.active{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.nav-btn{padding:0.45rem 1.1rem;border-radius:8px;font-size:0.82rem;font-family:inherit;transition:all 0.2s;text-decoration:none;display:inline-block}
+.nav-signin{background:none;border:1px solid var(--border);color:var(--text2)}.nav-signin:hover{border-color:var(--teal);color:var(--teal)}
+.nav-cta{background:var(--teal);border:none;color:#0b0f14;font-weight:700}
+@media(max-width:768px){.nav-center{display:none}.nav-signin{display:none}}
+.page-hero{padding:9rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden}
+.ph-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;z-index:0}
+.ph-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(0,201,167,0.07),transparent 70%);z-index:0}
+.ph-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.page-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.6rem}
+.page-eyebrow::before,.page-eyebrow::after{content:'';width:24px;height:1px;background:var(--teal);opacity:0.5}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.75rem);font-weight:900;line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.1rem}
+.page-title em{font-style:normal;color:var(--teal)}
+.page-sub{font-family:'Lora',serif;font-size:1.05rem;color:var(--text2);line-height:1.8;font-style:italic}
+section{padding:5rem 1.5rem}.container{max-width:900px;margin:0 auto}
+.section-label{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.6rem}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,201,167,0.3),transparent)}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.5vw,2.5rem);font-weight:900;line-height:1.15;margin-bottom:1rem;letter-spacing:-0.02em}
+
+/* TIMELINE STEPS */
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--teal),var(--teal-dim),transparent)}
+.tl-step{position:relative;margin-bottom:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid var(--border)}
+.tl-step:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.tl-dot{position:absolute;left:-3rem;top:0;width:42px;height:42px;border-radius:50%;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px rgba(0,201,167,0.1)}
+.tl-eyebrow{font-size:0.67rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.4rem}
+.tl-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:800;margin-bottom:0.6rem;line-height:1.2}
+.tl-body{font-family:'Lora',serif;font-size:0.95rem;line-height:1.85;color:var(--text2);margin-bottom:0.85rem}
+.tl-details{display:flex;flex-direction:column;gap:0.4rem}
+.tl-detail{display:flex;align-items:flex-start;gap:0.5rem;font-size:0.8rem;color:var(--text2);line-height:1.5}
+.tld-icon{color:var(--teal);flex-shrink:0;font-size:0.82rem;margin-top:0.1rem}
+.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-top:1rem;font-size:0.78rem;color:var(--text2);line-height:1.6;border-left:3px solid var(--teal)}
+.tl-time{display:inline-block;font-size:0.68rem;font-weight:700;color:var(--teal);background:var(--teal-dim);padding:0.15rem 0.5rem;border-radius:4px;margin-bottom:0.5rem}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:0.75rem;margin-top:2.5rem}
+.faq-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.faq-q{padding:1.1rem 1.25rem;font-weight:600;font-size:0.88rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background 0.15s}
+.faq-q:hover{background:var(--surface2)}
+.faq-icon{color:var(--teal);font-size:1rem;transition:transform 0.2s;flex-shrink:0}
+.faq-a{padding:0 1.25rem;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s}
+.faq-a.open{max-height:300px;padding:0 1.25rem 1.1rem}
+.faq-a p{font-family:'Lora',serif;font-size:0.88rem;line-height:1.75;color:var(--text2)}
+
+.btn-primary{padding:0.75rem 1.75rem;border-radius:10px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:800;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{opacity:0.9;transform:translateY(-2px)}
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:0.4rem}.footer-logo span{color:var(--teal)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:0.75rem}
+.footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none}.footer-links a:hover{color:var(--teal)}
+.footer-copy{font-size:0.7rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <div class="nav-center">
+    <a class="nav-link" href="/features">Features</a>
+    <a class="nav-link active" href="/how-it-works">How It Works</a>
+    <a class="nav-link" href="/pricing">Pricing</a>
+    <a class="nav-link" href="/about">About</a>
+    <a class="nav-link" href="/early-access">Early Access</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-btn nav-signin" href="/early-access">Sign In</a>
+    <a class="nav-btn nav-cta" href="/early-access">Get Early Access</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="ph-dots"></div><div class="ph-glow"></div>
+  <div class="ph-content">
+    <div class="page-eyebrow">How It Works</div>
+    <h1 class="page-title">Up and running<br>in <em>10 minutes.</em></h1>
+    <p class="page-sub">From account creation to full compliance tracking — Accordly's guided setup gets you protected and documenting from day one.</p>
+  </div>
+</div>
+
+<section>
+<div class="container">
+  <div class="section-label fade-up">Step by Step</div>
+  <div class="timeline">
+
+    <div class="tl-step fade-up">
+      <div class="tl-dot">1</div>
+      <div class="tl-eyebrow">Getting Started</div>
+      <div class="tl-title">Create your account</div>
+      <div class="tl-body">Sign up in minutes. Accordly's guided onboarding walks you through every setup step — from your account and children's profiles to security settings and emergency contacts. Two-factor authentication is required to protect your sensitive family information.</div>
+      <div class="tl-details">
+        <div class="tl-detail"><span class="tld-icon">✓</span>Add profiles for each child with medical info, school details, and allergies</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Select your relationship type — co-parenting or parallel parenting</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Configure escalation thresholds and emergency contacts</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Two-factor authentication enabled for account security</div>
+      </div>
+      <div class="tl-card"><div class="tl-time">⏱ ~3 minutes</div><br/>Account creation, profile setup, and security configuration.</div>
+    </div>
+
+    <div class="tl-step fade-up">
+      <div class="tl-dot">2</div>
+      <div class="tl-eyebrow">Documents</div>
+      <div class="tl-title">Upload your parenting plan</div>
+      <div class="tl-body">Upload your court-ordered parenting plan and any related legal documents. Accordly's AI reads the document and automatically extracts every enforceable obligation into a live compliance checklist. Bulk upload supported — PDF, DOCX, and scanned documents all accepted.</div>
+      <div class="tl-details">
+        <div class="tl-detail"><span class="tld-icon">✓</span>AI extracts all obligations — visits, payments, decision-making requirements</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Bulk upload for multiple documents — court orders, child support orders, protective orders</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Document checklist guides you on what to upload and what is optional</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Upload additional documents anytime from your dashboard</div>
+      </div>
+      <div class="tl-card"><div class="tl-time">⏱ ~2 minutes</div><br/>Drag and drop your parenting plan. AI extraction happens automatically in the background.</div>
+    </div>
+
+    <div class="tl-step fade-up">
+      <div class="tl-dot">3</div>
+      <div class="tl-eyebrow">Co-Parent Connection</div>
+      <div class="tl-title">Invite your co-parent</div>
+      <div class="tl-body">Enter your co-parent's email and send an invitation. They receive a clear explanation of what Accordly is and what joining involves — including that all communications will be logged. If they decline or don't respond, Accordly works as a single-party documentation platform for you with a full audit trail.</div>
+      <div class="tl-details">
+        <div class="tl-detail"><span class="tld-icon">✓</span>Full compliance tracking activates when both parents sign digitally</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>If co-parent declines, Accordly documents your side with a court-noted declination record</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Automatic reminder sent if no response within 14 days</div>
+      </div>
+      <div class="tl-card" style="border-left-color:var(--orange)"><div class="tl-time" style="background:rgba(255,140,66,0.1);color:var(--orange)">⚠ Important</div><br/>If your co-parent does not participate, all reports will note the declination. Your documentation is still court-valid.</div>
+    </div>
+
+    <div class="tl-step fade-up">
+      <div class="tl-dot">4</div>
+      <div class="tl-eyebrow">Automated Tracking</div>
+      <div class="tl-title">Everything tracks automatically</div>
+      <div class="tl-body">Once activated, Accordly tracks everything without any manual effort. Every visit logged. Every payment recorded. Every message analyzed. Every plan obligation monitored. Nothing slips through, nothing is forgotten, and everything has a timestamp.</div>
+      <div class="tl-details">
+        <div class="tl-detail"><span class="tld-icon">✓</span>AI analyzes every message before it's sent — flags and suggests rewrites</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Visit calendar tracks scheduled vs completed — missed visits flagged automatically</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Payment due dates monitored — overdue alerts sent and DHS reports generated</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Shared expense ledger tracks reimbursement requests and outstanding balances</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Violation patterns detected over time and flagged for escalation</div>
+      </div>
+      <div class="tl-card"><div class="tl-time">⚡ Ongoing</div><br/>Accordly runs in the background. You focus on your children. It handles the documentation.</div>
+    </div>
+
+    <div class="tl-step fade-up">
+      <div class="tl-dot">5</div>
+      <div class="tl-eyebrow">Court-Ready</div>
+      <div class="tl-title">Generate your court report in one tap</div>
+      <div class="tl-body">When you need documentation for a hearing, a motion, or an attorney consultation — one tap generates a complete, formatted PDF. Visit log, payment history, communication flags with AI analysis, parent fitness scores, and an AI-drafted case narrative. Ready to attach to any legal filing.</div>
+      <div class="tl-details">
+        <div class="tl-detail"><span class="tld-icon">✓</span>Share directly with your attorney from within the app</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>AI disclosure statement included on every export</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Tamper-evident audit log attached for evidentiary integrity</div>
+        <div class="tl-detail"><span class="tld-icon">✓</span>Generate anytime — not just at crisis moments</div>
+      </div>
+      <div class="tl-card"><div class="tl-time">⏱ ~10 seconds</div><br/>One tap. Complete PDF. Court-ready.</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<div class="container">
+  <div class="section-label fade-up">Common Questions</div>
+  <h2 class="section-title fade-up">Questions we hear most.</h2>
+  <div class="faq-list">
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">What if my co-parent refuses to use Accordly?<span class="faq-icon">+</span></div><div class="faq-a"><p>Accordly works as a single-party documentation platform. You can still log visits, track payments, document communications, and generate court-ready reports from your side alone. All reports will note that co-parent participation was invited but declined — which is itself relevant information for the court.</p></div></div>
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">How long does setup take?<span class="faq-icon">+</span></div><div class="faq-a"><p>Most users are fully set up in under 10 minutes. The guided onboarding walks you through every step. Uploading your parenting plan and inviting your co-parent are the two most important steps and both take under 2 minutes each.</p></div></div>
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">Are Accordly reports actually admissible in court?<span class="faq-icon">+</span></div><div class="faq-a"><p>Accordly generates court-ready documentation designed to meet evidentiary standards. All records include timestamps, audit logs, and AI disclosure statements. Admissibility is determined by the presiding court and applicable rules of evidence in your jurisdiction. We strongly recommend having your attorney review reports before filing.</p></div></div>
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">Can I use Accordly if I have a protective order?<span class="faq-icon">+</span></div><div class="faq-a"><p>Yes. Accordly is designed with high-conflict and DV situations in mind. You can use Accordly without any direct contact with your co-parent. The co-parent invitation system is optional. All documentation happens on your side without requiring interaction. The emergency escalation feature provides additional safety tools.</p></div></div>
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">How does the AI abuse detection work exactly?<span class="faq-icon">+</span></div><div class="faq-a"><p>When you write a message in Accordly, AI analyzes the content before you press send. It checks for 12 categories of harmful communication patterns including verbal threats, intimidation, parental alienation language, child triangulation, and manipulation. If a pattern is detected, you see a flag, an explanation, and a suggested neutral rewrite. You can still choose to send or not send. Every flagged message is logged with the AI analysis attached.</p></div></div>
+    <div class="faq-item fade-up"><div class="faq-q" onclick="toggleFaq(this)">Is my data private and secure?<span class="faq-icon">+</span></div><div class="faq-a"><p>Yes. All data is encrypted in transit and at rest. Two-factor authentication is required on all accounts. Your co-parent cannot access your private notes, internal flags, or documentation drafts. Data is retained for 90 days after account closure and then permanently deleted. Full details are in our Privacy Policy.</p></div></div>
+  </div>
+</div>
+</section>
+
+<div style="padding:5rem 1.5rem;text-align:center;background:var(--bg)">
+  <h2 style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;margin-bottom:1rem">Ready to get started?</h2>
+  <p style="font-family:'Lora',serif;font-size:1rem;color:var(--text2);font-style:italic;margin-bottom:2rem">Join the waitlist for early access. Takes 30 seconds.</p>
+  <a class="btn-primary" href="/early-access">Join the Waitlist →</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Accord<span>ly</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/features">Features</a><a href="/how-it-works">How It Works</a><a href="/pricing">Pricing</a><a href="/about">About</a><a href="/early-access">Early Access</a>
+  </div>
+  <div class="footer-copy">© 2026 Accordly · Patent Pending · Co-Parenting, Protected.</div>
+
+  <div style="margin-top:1rem"><a href="https://weather.com" style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.72rem;font-weight:700;color:#ff5c5c;border:1px solid rgba(255,92,92,0.25);padding:0.3rem 0.75rem;border-radius:6px;background:rgba(255,92,92,0.1);text-decoration:none">⚡ Safe Exit</a></div>
+</footer>
+<script>
+function toggleFaq(el){
+  const ans=el.nextElementSibling;const icon=el.querySelector('.faq-icon');
+  const isOpen=ans.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>{a.classList.remove('open');a.previousElementSibling.querySelector('.faq-icon').textContent='+'});
+  if(!isOpen){ans.classList.add('open');icon.textContent='−'}
+}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

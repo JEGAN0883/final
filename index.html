@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Accordly — AI-powered co-parenting compliance, abuse detection, and child welfare platform. Free to start. Patent Pending."/>
+<meta property="og:title" content="Accordly — Co-Parenting, Protected."/>
+<meta property="og:description" content="Real-time abuse detection, crisis decision engine, DHS enforcement, and court-ready documentation for every family."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<title>Accordly — Co-Parenting, Protected.</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f14'/><path d='M50 8 L82 20 L82 54 C82 74 68 86 50 92 C32 86 18 74 18 54 L18 20 Z' fill='none' stroke='%2300c9a7' stroke-width='4'/><path d='M36 70 L50 34 L64 70' stroke='%2300c9a7' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><line x1='40' y1='58' x2='60' y2='58' stroke='%2300c9a7' stroke-width='4' stroke-linecap='round'/></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=Epilogue:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--surface3:#212d3d;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--red:#ff5c5c;--red-dim:rgba(255,92,92,0.1);--orange:#ff8c42;--orange-dim:rgba(255,140,66,0.1);--yellow:#f5c842;--blue:#6495ed;--purple:#a78bfa;--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--muted2:#3a4a5a}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{color:var(--text);font-family:'Epilogue',sans-serif;overflow-x:hidden}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.93);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-link{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;font-weight:500}.nav-link:hover{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:0.65rem}
+.nav-btn{padding:0.42rem 1rem;border-radius:8px;font-size:0.8rem;font-family:inherit;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;font-weight:600}
+.btn-signin{background:none;border:1px solid var(--border2);color:var(--text2)}.btn-signin:hover{border-color:var(--teal);color:var(--teal)}
+.btn-cta{background:var(--teal);border:none;color:#0b0f14;font-weight:700}.btn-cta:hover{opacity:0.9}
+@media(max-width:800px){.nav-links{display:none}.btn-signin{display:none}}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hb-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px}
+.hb-glow{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,201,167,0.06),transparent 65%);pointer-events:none}
+.hb-ring{position:absolute;border-radius:50%;border:1px solid rgba(0,201,167,0.05);top:50%;left:50%;transform:translate(-50%,-50%)}
+.r1{width:600px;height:600px;animation:spin 40s linear infinite}
+.r2{width:1000px;height:1000px;animation:spin 70s linear infinite reverse;border-color:rgba(0,201,167,0.03)}
+.r3{width:1400px;height:1400px;animation:spin 100s linear infinite;border-color:rgba(0,201,167,0.015)}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.hero-content{position:relative;z-index:1;max-width:860px}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;padding:0.38rem 1rem;border-radius:50px;border:1px solid rgba(0,201,167,0.25);background:rgba(0,201,167,0.07);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--teal);margin-bottom:1.75rem}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,5.2rem);font-weight:900;line-height:1.04;letter-spacing:-0.03em;margin-bottom:1.5rem}
+h1 em{font-style:normal;color:var(--teal)}
+.hero-sub{font-family:'Lora',serif;font-size:clamp(1rem,2.2vw,1.22rem);color:var(--text2);line-height:1.85;max-width:640px;margin:0 auto 2.5rem;font-style:italic}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.btn-primary{padding:1rem 2.25rem;border-radius:13px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;border:none;cursor:pointer;transition:all 0.25s;text-decoration:none;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-primary:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 10px 35px rgba(0,201,167,0.28)}
+.btn-outline{padding:1rem 2.25rem;border-radius:13px;border:1px solid var(--border2);color:var(--text2);font-size:0.92rem;font-family:inherit;background:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal)}
+.hero-note{font-size:0.75rem;color:var(--muted);margin-bottom:3rem}.hero-note span{color:var(--teal);font-weight:600}
+.hero-trust{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+.ht-item{font-size:0.72rem;color:var(--muted);display:flex;align-items:center;gap:0.4rem}
+.ht-sep{width:1px;height:16px;background:var(--border2)}
+/* TICKER */
+.ticker{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.1rem 0;overflow:hidden}
+.ticker-track{display:flex;gap:3rem;animation:tick 35s linear infinite;white-space:nowrap}
+.ticker-item{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);flex-shrink:0;display:flex;align-items:center;gap:0.5rem}
+.ti-dot{width:4px;height:4px;border-radius:50%;background:var(--teal)}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* SECTIONS */
+section{padding:6rem 1.5rem}
+.container{max-width:1100px;margin:0 auto}
+.section-eye{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.6rem}
+.section-eye::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,201,167,0.3),transparent)}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.85rem,4vw,2.85rem);font-weight:900;line-height:1.12;letter-spacing:-0.025em;margin-bottom:1rem}
+.section-sub{font-family:'Lora',serif;font-size:1rem;color:var(--text2);line-height:1.85;font-style:italic;max-width:620px}
+/* SPECTRUM */
+.spectrum{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 1.5rem}
+.spectrum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;max-width:1100px;margin:0 auto}
+.sp-item{padding:2rem 2.5rem;border-right:1px solid var(--border);text-align:center}
+.sp-item:last-child{border-right:none}
+.sp-icon{font-size:2rem;margin-bottom:0.85rem}
+.sp-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:var(--text);margin-bottom:0.5rem}
+.sp-desc{font-size:0.78rem;color:var(--text2);line-height:1.65}
+.sp-badge{display:inline-block;font-size:0.6rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:4px;margin-top:0.65rem;letter-spacing:0.04em}
+/* FEATURE SPLITS */
+.feat-split{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:6rem;padding-bottom:6rem;border-bottom:1px solid var(--border)}
+.feat-split:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.feat-split.flip .fs-visual{order:2}.feat-split.flip .fs-text{order:1}
+.fs-text .section-eye{margin-bottom:0.5rem}
+.fs-text h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;line-height:1.18;letter-spacing:-0.025em;margin-bottom:0.85rem}
+.fs-text p{font-family:'Lora',serif;font-size:0.95rem;line-height:1.9;color:var(--text2);margin-bottom:0.85rem}
+.fs-bullets{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem}
+.fs-bullet{display:flex;align-items:flex-start;gap:0.55rem;font-size:0.82rem;color:var(--text2);line-height:1.5}
+.fsb{color:var(--teal);flex-shrink:0;font-size:0.85rem;margin-top:1px}
+/* MOCK CARDS */
+.mock{background:var(--bg);border:1px solid var(--border);border-radius:18px;overflow:hidden;position:relative}
+.mock::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.mock-teal::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.mock-red::before{background:linear-gradient(90deg,var(--red),rgba(255,92,92,0.3))}
+.mock-blue::before{background:linear-gradient(90deg,var(--blue),rgba(100,149,237,0.3))}
+.mock-hdr{padding:0.85rem 1.1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+.mock-dots{display:flex;gap:5px}
+.md{width:9px;height:9px;border-radius:50%}
+.mock-body{padding:1.1rem}
+.mock-row{display:flex;align-items:center;gap:0.65rem;padding:0.55rem;background:var(--surface);border-radius:10px;margin-bottom:0.45rem}
+.mock-row:last-child{margin-bottom:0}
+.mr-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0}
+.mr-body{flex:1;min-width:0}
+.mr-t{font-size:0.72rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mr-s{font-size:0.6rem;color:var(--muted)}
+.mr-badge{font-size:0.58rem;font-weight:700;padding:0.1rem 0.38rem;border-radius:4px;flex-shrink:0}
+.score-row{display:flex;gap:0.5rem;margin-bottom:0.65rem}
+.score-box{flex:1;background:var(--surface);border-radius:10px;padding:0.65rem;text-align:center}
+.sb-n{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;line-height:1}
+.sb-l{font-size:0.58rem;color:var(--muted);margin-top:2px}
+.flag-wrap{background:rgba(255,92,92,0.08);border:1px solid rgba(255,92,92,0.2);border-radius:10px;padding:0.7rem;margin-bottom:0.5rem}
+.flag-title{font-size:0.6rem;font-weight:700;color:var(--red);margin-bottom:0.2rem}
+.flag-text{font-size:0.7rem;color:var(--text2);line-height:1.5}
+.flag-rewrite{font-size:0.65rem;color:var(--teal);margin-top:0.35rem;padding:0.3rem 0.5rem;background:rgba(0,201,167,0.08);border-radius:6px}
+.esc-step{display:flex;gap:0.5rem;margin-bottom:0.5rem;align-items:flex-start}
+.esc-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;flex-shrink:0;border:2px solid}
+.crisis-card{background:linear-gradient(135deg,rgba(255,92,92,0.1),rgba(255,92,92,0.04));border:1px solid rgba(255,92,92,0.25);border-radius:12px;padding:0.85rem}
+.crisis-title{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:900;color:var(--red);margin-bottom:0.4rem}
+.crisis-btns{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem}
+.c-btn{display:inline-block;padding:0.38rem 0.75rem;border-radius:8px;font-size:0.65rem;font-weight:700}
+/* 16 FEATURES GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:all 0.2s;position:relative;overflow:hidden}
+.feat-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.fc-teal::before{background:var(--teal)}.fc-blue::before{background:var(--blue)}.fc-orange::before{background:var(--orange)}.fc-purple::before{background:var(--purple)}.fc-red::before{background:var(--red)}.fc-yellow::before{background:var(--yellow)}
+.fc-icon{font-size:1.5rem;margin-bottom:0.6rem}
+.fc-title{font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;color:var(--text);margin-bottom:0.3rem;line-height:1.25}
+.fc-desc{font-size:0.68rem;color:var(--muted);line-height:1.55}
+.fc-new{position:absolute;top:0.7rem;right:0.7rem;font-size:0.55rem;font-weight:700;padding:0.1rem 0.35rem;border-radius:3px;background:var(--teal-dim2);color:var(--teal)}
+/* PRICING PREVIEW */
+.price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.price-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.5rem;position:relative;overflow:hidden;transition:all 0.2s}
+.price-card:hover{transform:translateY(-3px)}
+.price-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pc-free::before{background:var(--blue)}.pc-essential::before{background:var(--teal)}.pc-safe{border-color:rgba(0,201,167,0.4);background:linear-gradient(160deg,#0f1e1a,#0b0f14)}.pc-safe::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}.pc-pro::before{background:var(--purple)}
+.pc-pop{position:absolute;top:1rem;right:1rem;font-size:0.55rem;font-weight:800;padding:0.15rem 0.45rem;border-radius:50px;background:var(--teal);color:#0b0f14;letter-spacing:0.04em;text-transform:uppercase}
+.pc-name{font-family:'Syne',sans-serif;font-size:0.88rem;font-weight:900;color:var(--text);margin-bottom:0.2rem}
+.pc-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:900;color:var(--text);line-height:1;margin:0.75rem 0 0.25rem}
+.pc-price sub{font-size:0.7rem;font-weight:400;color:var(--muted)}
+.pc-desc{font-size:0.68rem;color:var(--muted);line-height:1.5;margin-bottom:1rem}
+.pc-feats{display:flex;flex-direction:column;gap:0.4rem}
+.pcf{display:flex;align-items:flex-start;gap:0.45rem;font-size:0.7rem;color:var(--text2);line-height:1.4}
+.pcf-check{color:var(--teal);flex-shrink:0;font-size:0.75rem;margin-top:1px}
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.testi{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.75rem}
+.tq{font-family:'Lora',serif;font-size:0.9rem;color:var(--text2);line-height:1.8;font-style:italic;margin-bottom:1.25rem}
+.ta{display:flex;align-items:center;gap:0.65rem}
+.ta-ava{width:38px;height:38px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:0.9rem;border:2px solid var(--border2)}
+.ta-name{font-size:0.78rem;font-weight:700;color:var(--text);margin-bottom:1px}
+.ta-role{font-size:0.65rem;color:var(--muted)}
+.ta-stars{color:var(--teal);font-size:0.7rem;margin-bottom:0.25rem}
+/* CTA */
+.cta-wrap{background:linear-gradient(135deg,rgba(0,201,167,0.07),rgba(0,143,114,0.04));border:1px solid rgba(0,201,167,0.15);border-radius:28px;padding:5rem 2rem;text-align:center;max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+.cta-wrap::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,201,167,0.06),transparent 60%);pointer-events:none}
+.cta-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:900;line-height:1.12;letter-spacing:-0.025em;margin-bottom:1rem;position:relative;z-index:1}
+.cta-sub{font-family:'Lora',serif;font-size:1rem;color:var(--text2);line-height:1.8;font-style:italic;max-width:500px;margin:0 auto 2.5rem;position:relative;z-index:1}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-note{font-size:0.7rem;color:var(--muted);margin-top:1.25rem;position:relative;z-index:1}
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:4rem 1.5rem 2.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.fg-logo{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;color:var(--text);margin-bottom:0.5rem}.fg-logo span{color:var(--teal)}
+.fg-tag{font-size:0.78rem;color:var(--muted);line-height:1.65;max-width:260px;margin-bottom:1rem}
+.fg-patent{font-size:0.62rem;color:var(--muted2);font-family:'DM Mono',monospace}
+.fg-col-title{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);margin-bottom:0.9rem}
+.fg-link{display:block;font-size:0.78rem;color:var(--muted);text-decoration:none;margin-bottom:0.5rem;transition:color 0.2s}.fg-link:hover{color:var(--teal)}
+.footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem}
+.fb-copy{font-size:0.72rem;color:var(--muted)}
+.fb-links{display:flex;gap:1.5rem}
+.fb-link{font-size:0.72rem;color:var(--muted);text-decoration:none;transition:color 0.2s}.fb-link:hover{color:var(--teal)}
+.safe-exit{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.72rem;font-weight:700;color:var(--red);border:1px solid rgba(255,92,92,0.25);padding:0.3rem 0.75rem;border-radius:6px;cursor:pointer;transition:all 0.2s;background:var(--red-dim);text-decoration:none}.safe-exit:hover{background:var(--red);color:#fff}
+/* RESPONSIVE */
+@media(max-width:1000px){.feat-split{grid-template-columns:1fr;gap:2.5rem}.feat-split.flip .fs-visual,.feat-split.flip .fs-text{order:unset}.feat-grid{grid-template-columns:1fr 1fr}.price-grid{grid-template-columns:1fr 1fr}.testi-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}.spectrum-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.feat-grid{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}.sp-item{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem}.sp-item:last-child{border-bottom:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <div class="nav-links">
+    <a class="nav-link" href="/features">Features</a>
+    <a class="nav-link" href="/how-it-works">How It Works</a>
+    <a class="nav-link" href="/pricing">Pricing</a>
+    <a class="nav-link" href="/about">About</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-btn btn-signin" href="/early-access">Sign In</a>
+    <a class="nav-btn btn-cta" href="/early-access">Start Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"><div class="hb-dots"></div><div class="hb-glow"></div><div class="hb-ring r1"></div><div class="hb-ring r2"></div><div class="hb-ring r3"></div></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="badge-dot"></div>Patent Pending · USPTO #75170980 · Now Live</div>
+    <h1>Co-Parenting,<br/><em>finally protected.</em></h1>
+    <p class="hero-sub">AI-powered documentation, real-time abuse detection, DHS enforcement support, and a crisis decision engine — for every family from low-conflict to high.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="/early-access">Start Free Today →</a>
+      <a class="btn-outline" href="/features">See All Features</a>
+    </div>
+    <div class="hero-note">No credit card · No co-parent needed · <span>Crisis tools always free</span></div>
+    <div class="hero-trust">
+      <div class="ht-item">🔒 Court-admissible · All 50 states</div>
+      <div class="ht-sep"></div>
+      <div class="ht-item">⚖️ Patent Pending</div>
+      <div class="ht-sep"></div>
+      <div class="ht-item">🛡 Free for DV survivors</div>
+      <div class="ht-sep"></div>
+      <div class="ht-item">📱 Android · iOS coming</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ti-dot"></div>AI Abuse Detection</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Coercive Control Recognition</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Parental Alienation Flags</div>
+    <div class="ticker-item"><div class="ti-dot"></div>DHS Wage Garnishment Reports</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Crisis Decision Engine</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Parent Fitness Scoring</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Court-Ready Documentation</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Right of First Refusal Tracking</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Child Wellness Check-Ins</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Medication Tracker</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Supervised Visitation Logs</div>
+    <div class="ticker-item"><div class="ti-dot"></div>GAL Portal</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Settlement Negotiation AI</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Multi-State Enforcement</div>
+    <div class="ticker-item"><div class="ti-dot"></div>AI Abuse Detection</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Coercive Control Recognition</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Parental Alienation Flags</div>
+    <div class="ticker-item"><div class="ti-dot"></div>DHS Wage Garnishment Reports</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Crisis Decision Engine</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Parent Fitness Scoring</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Court-Ready Documentation</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Right of First Refusal Tracking</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Child Wellness Check-Ins</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Medication Tracker</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Supervised Visitation Logs</div>
+    <div class="ticker-item"><div class="ti-dot"></div>GAL Portal</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Settlement Negotiation AI</div>
+    <div class="ticker-item"><div class="ti-dot"></div>Multi-State Enforcement</div>
+  </div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<div class="spectrum">
+  <div class="spectrum-grid">
+    <div class="sp-item">
+      <div class="sp-icon">🌱</div>
+      <div class="sp-title">Low Conflict</div>
+      <div class="sp-desc">Shared calendar, expense tracking, school coordination, and documented communication. Everything two cooperative parents need to stay organized.</div>
+      <div class="sp-badge" style="background:var(--teal-dim2);color:var(--teal)">Free Plan Works</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">⚡</div>
+      <div class="sp-title">High Conflict</div>
+      <div class="sp-desc">AI abuse detection, compliance tracking, parent fitness scoring, violation escalation, and court-ready reports. Built for parallel parenting.</div>
+      <div class="sp-badge" style="background:var(--orange-dim);color:var(--orange)">Safe Plan · $17/mo</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-icon">🛡</div>
+      <div class="sp-title">DV & Safety</div>
+      <div class="sp-desc">Crisis Decision Engine, emergency export, real-time abuse detection, DHS enforcement, and in-moment safety guidance. Safety tools are always free.</div>
+      <div class="sp-badge" style="background:var(--red-dim);color:var(--red)">Free for Survivors</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURE DEEP DIVES -->
+<section>
+  <div class="container">
+    <!-- AI SAFETY -->
+    <div class="feat-split">
+      <div class="fs-text">
+        <div class="section-eye">AI Safety System</div>
+        <h2>Detects what other apps never see.</h2>
+        <p>Accordly's AI analyzes every message before it sends — detecting 12 categories of abuse patterns including threatening language, coercive control, financial abuse, and parental alienation. Not just tone. Patterns.</p>
+        <div class="fs-bullets">
+          <div class="fs-bullet"><span class="fsb">✓</span>12 abuse detection categories — pre-send, real time</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Coercive control and financial abuse recognition</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Parental alienation language detection and logging</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>AI-suggested compliant response templates</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>30-day pattern tracker with escalation trend arrows</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Your compliance record stays clean — always</div>
+        </div>
+        <a class="btn-primary" href="/features">See all features →</a>
+      </div>
+      <div class="fs-visual">
+        <div class="mock mock-red">
+          <div class="mock-hdr"><div class="mock-dots"><div class="md" style="background:#ff5c5c"></div><div class="md" style="background:#f5c842"></div><div class="md" style="background:#00c9a7"></div></div><div style="font-size:0.63rem;color:var(--muted);margin-left:0.5rem">AI Messaging — monitoring active</div></div>
+          <div class="mock-body">
+            <div class="flag-wrap">
+              <div class="flag-title">⚑ Threatening Language + Parental Alienation Detected</div>
+              <div class="flag-text">"If you take me back to court I will make sure the kids never want to see you again."</div>
+              <div class="flag-rewrite">✦ Compliant rewrite suggested · Message blocked · Incident logged</div>
+            </div>
+            <div class="mock-row"><div class="mr-icon" style="background:var(--teal-dim)">📊</div><div class="mr-body"><div class="mr-t">Pattern: threats ▲ 100% this month</div><div class="mr-s">4 incidents · Escalation recommended</div></div><div class="mr-badge" style="background:var(--red-dim);color:var(--red)">Critical</div></div>
+            <div class="mock-row"><div class="mr-icon" style="background:var(--teal-dim)">⚖️</div><div class="mr-body"><div class="mr-t">Your compliance score: 87 · Clean</div><div class="mr-s">All responses documented and reviewed</div></div><div class="mr-badge" style="background:var(--teal-dim2);color:var(--teal)">Protected</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRISIS ENGINE -->
+    <div class="feat-split flip">
+      <div class="fs-visual">
+        <div class="mock mock-red">
+          <div class="mock-hdr"><div class="mock-dots"><div class="md" style="background:#ff5c5c"></div><div class="md" style="background:#f5c842"></div><div class="md" style="background:#00c9a7"></div></div><div style="font-size:0.63rem;color:var(--muted);margin-left:0.5rem">Crisis Decision Engine</div></div>
+          <div class="mock-body">
+            <div class="crisis-card">
+              <div class="crisis-title">🧠 Accordly decides. You just tap.</div>
+              <div style="font-size:0.7rem;color:var(--text2);line-height:1.6;margin-bottom:0.65rem">When fight-or-flight is active, your brain can't make decisions. Accordly reads your situation and gives one clear directive.</div>
+              <div class="crisis-btns">
+                <span class="c-btn" style="background:var(--red);color:#fff">🚪 Leave Home</span>
+                <span class="c-btn" style="background:var(--red);color:#fff">🚨 Call 911</span>
+                <span class="c-btn" style="background:var(--blue-dim);color:var(--blue)">⚖️ Court</span>
+                <span class="c-btn" style="background:var(--teal-dim2);color:var(--teal)">📋 Document</span>
+              </div>
+            </div>
+            <div style="margin-top:0.65rem;font-size:0.67rem;color:var(--muted);background:var(--surface);border-radius:8px;padding:0.55rem">🛡 DV Hotline 1-800-799-7233 · Safe Exit · Always visible</div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-text">
+        <div class="section-eye">Crisis Decision Engine</div>
+        <h2>Makes decisions when you can't.</h2>
+        <p>In fight-or-flight, the prefrontal cortex is partially offline. Accordly reads your situation and outputs one clear directive — not a menu, not information. One thing. Right now. Always free.</p>
+        <div class="fs-bullets">
+          <div class="fs-bullet"><span class="fsb">✓</span>Four one-tap decisions: Leave · 911 · Court · Document</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Situation assessment → single directive output</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Fight/flight/freeze guidance per nervous system state</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Emergency 30-day export — one tap, alerts contacts</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Safe exit button — always visible, always works</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Free for every plan — safety is never paywalled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DHS -->
+    <div class="feat-split">
+      <div class="fs-text">
+        <div class="section-eye">Payment Enforcement</div>
+        <h2>Child support enforcement, step by step.</h2>
+        <p>When child support isn't paid, Accordly guides you through every stage — from the first reminder to DHS wage garnishment, license suspension, passport denial, and federal charges. Every document pre-filled.</p>
+        <div class="fs-bullets">
+          <div class="fs-bullet"><span class="fsb">✓</span>7-stage escalation track — Day 0 through federal</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>DHS wage garnishment report — pre-filled, file free</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>50-state agency directory with phone numbers</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Passport denial tracker — alerts at $2,500 threshold</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>License suspension, tax intercept, property lien tools</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Arrears calculation with interest — court-formatted</div>
+        </div>
+        <a class="btn-primary" href="/features">See enforcement tools →</a>
+      </div>
+      <div class="fs-visual">
+        <div class="mock mock-teal">
+          <div class="mock-hdr"><div class="mock-dots"><div class="md" style="background:#ff5c5c"></div><div class="md" style="background:#f5c842"></div><div class="md" style="background:#00c9a7"></div></div><div style="font-size:0.63rem;color:var(--muted);margin-left:0.5rem">DHS Escalation — Day 22</div></div>
+          <div class="mock-body">
+            <div style="background:var(--red-dim);border:1px solid rgba(255,92,92,0.2);border-radius:10px;padding:0.65rem;margin-bottom:0.65rem">
+              <div style="font-family:'Syne',sans-serif;font-weight:900;color:var(--red);font-size:0.8rem;margin-bottom:0.2rem">$1,700 overdue · File with DHS today</div>
+              <div style="font-size:0.68rem;color:var(--text2)">Report ready · Takes 15 min · Completely free</div>
+            </div>
+            <div class="esc-step"><div class="esc-dot" style="background:var(--teal-dim2);border-color:var(--teal);color:var(--teal)">✓</div><div style="font-size:0.7rem;color:var(--text2)">Day 7 — Reminder sent · Read receipt confirmed</div></div>
+            <div class="esc-step"><div class="esc-dot" style="background:var(--teal-dim2);border-color:var(--teal);color:var(--teal)">✓</div><div style="font-size:0.7rem;color:var(--text2)">Day 14 — Attorney notified · Report generated</div></div>
+            <div class="esc-step"><div class="esc-dot" style="background:var(--orange-dim);border-color:var(--orange);color:var(--orange)">⚑</div><div style="font-size:0.7rem;color:var(--text2)"><strong style="color:var(--orange)">Day 22 — File with DHS now</strong></div></div>
+            <div class="esc-step"><div class="esc-dot" style="background:var(--surface2);border-color:var(--muted2);color:var(--muted)">4</div><div style="font-size:0.7rem;color:var(--muted)">Day 30+ — License suspension available</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONAL -->
+    <div class="feat-split flip">
+      <div class="fs-visual">
+        <div class="mock mock-blue">
+          <div class="mock-hdr"><div class="mock-dots"><div class="md" style="background:#ff5c5c"></div><div class="md" style="background:#f5c842"></div><div class="md" style="background:#00c9a7"></div></div><div style="font-size:0.63rem;color:var(--muted);margin-left:0.5rem">Attorney Pro Dashboard</div></div>
+          <div class="mock-body">
+            <div class="score-row">
+              <div class="score-box"><div class="sb-n" style="color:var(--teal)">12</div><div class="sb-l">Active Cases</div></div>
+              <div class="score-box"><div class="sb-n" style="color:var(--red)">4</div><div class="sb-l">Urgent Alerts</div></div>
+              <div class="score-box"><div class="sb-n" style="color:var(--blue)">34</div><div class="sb-l">Reports</div></div>
+            </div>
+            <div class="mock-row"><div class="mr-icon" style="background:var(--red-dim)">⚑</div><div class="mr-body"><div class="mr-t">Mitchell v. Mitchell · Hearing Apr 14</div><div class="mr-s">Score 87 vs 29 · Contempt motion ready</div></div><div class="mr-badge" style="background:var(--red-dim);color:var(--red)">Urgent</div></div>
+            <div class="mock-row"><div class="mr-icon" style="background:var(--teal-dim)">✅</div><div class="mr-body"><div class="mr-t">Williams v. Chen · Compliant</div><div class="mr-s">Score 91 vs 78 · No flags this period</div></div><div class="mr-badge" style="background:var(--teal-dim2);color:var(--teal)">Healthy</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="fs-text">
+        <div class="section-eye">For Professionals</div>
+        <h2>Built for attorneys, mediators, and judges.</h2>
+        <p>Purpose-built dashboards for every legal professional — multi-case management, AI compliance reports, side-by-side fitness scores, GAL portal, and a 72-provision judicial playbook.</p>
+        <div class="fs-bullets">
+          <div class="fs-bullet"><span class="fsb">✓</span>Attorney multi-case dashboard with retainer tracking</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Mediator side-by-side compliance comparison</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Guardian ad litem portal — child welfare focused</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Judge's 72-provision playbook — research-backed</div>
+          <div class="fs-bullet"><span class="fsb">✓</span>Court system licensing for counties and states</div>
+        </div>
+        <a class="btn-primary" href="/pricing">See professional plans →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 NEW FEATURES -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-eye" style="justify-content:center">Complete Platform</div>
+      <div class="section-title" style="text-align:center">Everything from first filing<br/>to final compliance.</div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card fc-teal"><div class="fc-icon">📹</div><div class="fc-title">Documented Calls</div><div class="fc-desc">Video and audio calls logged automatically. Missed virtual visits flagged as violations.</div></div>
+      <div class="feat-card fc-teal"><div class="fc-icon">📍</div><div class="fc-title">GPS Check-In</div><div class="fc-desc">One-tap exchange attendance verification. GPS-timestamped proof you showed up.</div></div>
+      <div class="feat-card fc-blue"><div class="fc-icon">🔄</div><div class="fc-title">Swap Requests</div><div class="fc-desc">Formal documented schedule changes. Approved swaps auto-update the shared calendar.</div></div>
+      <div class="feat-card fc-blue"><div class="fc-icon">⏰</div><div class="fc-title">ROFR Tracking</div><div class="fc-desc">Right of first refusal monitored automatically. Violations flagged before they occur.</div></div>
+      <div class="feat-card fc-orange"><div class="fc-icon">🗺</div><div class="fc-title">Divorce Roadmap</div><div class="fc-desc">Plain-language guide from filing to final decree. Always know where you are.</div></div>
+      <div class="feat-card fc-teal"><div class="fc-icon">💚</div><div class="fc-title">Child Wellness</div><div class="fc-desc">Emoji check-ins after transitions. Clinically significant patterns flagged for counselors.</div><div class="fc-new">New</div></div>
+      <div class="feat-card fc-blue"><div class="fc-icon">💊</div><div class="fc-title">Medication Tracker</div><div class="fc-desc">Real-time shared health record across both homes. Missed doses flagged automatically.</div></div>
+      <div class="feat-card fc-orange"><div class="fc-icon">🏫</div><div class="fc-title">School Hub</div><div class="fc-desc">Shared school events, teacher contacts, activity schedules. Both parents stay informed.</div></div>
+      <div class="feat-card fc-purple"><div class="fc-icon">📋</div><div class="fc-title">Communication Protocol</div><div class="fc-desc">Both parties sign a custom rule agreement. AI enforces every message against it.</div></div>
+      <div class="feat-card fc-red"><div class="fc-icon">⚖️</div><div class="fc-title">Court Deadlines</div><div class="fc-desc">Every legal deadline with 30/7/1 day alerts. Attorney notified automatically.</div></div>
+      <div class="feat-card fc-orange"><div class="fc-icon">📝</div><div class="fc-title">Modification Tracker</div><div class="fc-desc">Readiness score against legal threshold. Know when your record supports a filing.</div></div>
+      <div class="feat-card fc-purple"><div class="fc-icon">👤</div><div class="fc-title">GAL Portal</div><div class="fc-desc">Guardian ad litem view — child-welfare focused, independent from either parent.</div></div>
+      <div class="feat-card fc-yellow"><div class="fc-icon">💰</div><div class="fc-title">Financial Disclosure</div><div class="fc-desc">AI-guided disclosure with income anomaly detection and support calculator.</div></div>
+      <div class="feat-card fc-red"><div class="fc-icon">🛡</div><div class="fc-title">Supervised Visitation</div><div class="fc-desc">Third-party supervisor verification. Incident reports and demeanor logs, court-ready.</div></div>
+      <div class="feat-card fc-blue"><div class="fc-icon">🌎</div><div class="fc-title">Multi-State / Intl</div><div class="fc-desc">UIFSA, Hague Convention, passport alerts, relocation notices across all 50 states.</div></div>
+      <div class="feat-card fc-teal"><div class="fc-icon">🤝</div><div class="fc-title">Settlement AI</div><div class="fc-desc">Custody split explorer, negotiating position analysis, research-backed guidance.</div><div class="fc-new">New</div></div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem"><a class="btn-outline" href="/features">Explore all features →</a></div>
+  </div>
+</section>
+
+<!-- PRICING PREVIEW -->
+<section>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-eye" style="justify-content:center">Pricing</div>
+      <div class="section-title" style="text-align:center">Start free. Every plan includes<br/>court-admissible documentation.</div>
+      <p class="section-sub" style="text-align:center;margin:0.75rem auto 0;max-width:480px">One subscription covers you. The co-parent joins free. No double billing.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card pc-free">
+        <div class="pc-name">🌱 Free</div>
+        <div class="pc-price">$0<sub>/mo</sub></div>
+        <div class="pc-desc">Core documentation + crisis tools. Always free, no card needed.</div>
+        <div class="pc-feats">
+          <div class="pcf"><span class="pcf-check">✓</span>Timestamped messaging</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Shared custody calendar</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Crisis Decision Engine</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Emergency export</div>
+          <div class="pcf"><span class="pcf-check">✓</span>DV resources · Always free</div>
+        </div>
+      </div>
+      <div class="price-card pc-essential">
+        <div class="pc-name">⚡ Essential</div>
+        <div class="pc-price">$9.99<sub>/mo</sub></div>
+        <div class="pc-desc">AI analysis + full documentation. More features than any basic plan on the market.</div>
+        <div class="pc-feats">
+          <div class="pcf"><span class="pcf-check">✓</span>AI pre-send message analysis</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Court report generator</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Medication tracker</div>
+          <div class="pcf"><span class="pcf-check">✓</span>School &amp; activities hub</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Location check-in</div>
+        </div>
+      </div>
+      <div class="price-card pc-safe">
+        <div class="pc-pop">Most Popular</div>
+        <div class="pc-name">🛡 Safe</div>
+        <div class="pc-price" style="color:var(--teal)">$17<sub>/mo</sub></div>
+        <div class="pc-desc">Full AI safety suite — abuse detection, crisis tools, and DHS enforcement no other platform offers.</div>
+        <div class="pc-feats">
+          <div class="pcf"><span class="pcf-check">✓</span>Abuse detection · 12 categories</div>
+          <div class="pcf"><span class="pcf-check">✓</span>DHS enforcement reports</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Parent fitness scoring</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Child wellness check-ins</div>
+          <div class="pcf"><span class="pcf-check">✓</span>ROFR tracker + more</div>
+        </div>
+      </div>
+      <div class="price-card pc-pro">
+        <div class="pc-name">🏛 Pro</div>
+        <div class="pc-price">$24<sub>/mo</sub></div>
+        <div class="pc-desc">The complete platform. Every feature, every tool, for the most complex cases.</div>
+        <div class="pc-feats">
+          <div class="pcf"><span class="pcf-check">✓</span>Full court report suite</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Modification tracker</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Settlement negotiation AI</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Documented video calls</div>
+          <div class="pcf"><span class="pcf-check">✓</span>Priority 7-day support</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;font-size:0.78rem;color:var(--muted)">Free access for DV survivors and families in hardship. <a href="/pricing" style="color:var(--teal);text-decoration:none;font-weight:600">Learn more →</a></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-eye" style="justify-content:center">Early Access</div>
+      <div class="section-title" style="text-align:center">Built by a parent who lived it.</div>
+    </div>
+    <div class="testi-grid">
+      <div class="testi"><div class="ta-stars">★★★★★</div><div class="tq">"I've been looking for something like this for three years. Other apps document what happened — Accordly actually tells me what's being done to me, what my rights are, and exactly what to do. That's the difference."</div><div class="ta"><div class="ta-ava">👩</div><div><div class="ta-name">Sarah T.</div><div class="ta-role">High-conflict co-parent · Seattle, WA</div></div></div></div>
+      <div class="testi"><div class="ta-stars">★★★★★</div><div class="tq">"The DHS enforcement section alone is worth the subscription. I filed for wage garnishment in 20 minutes using the pre-filled report. My attorney said it was more organized than anything she'd seen from a client."</div><div class="ta"><div class="ta-ava">👨</div><div><div class="ta-name">Marcus D.</div><div class="ta-role">Non-custodial parent · Portland, OR</div></div></div></div>
+      <div class="testi"><div class="ta-stars">★★★★★</div><div class="tq">"As a family law attorney, I've been waiting for a platform that generates AI narrative reports I can actually use in court. The compliance record Accordly builds is stronger than anything a client could put together manually."</div><div class="ta"><div class="ta-ava">⚖️</div><div><div class="ta-name">Diana B., Esq.</div><div class="ta-role">Family law attorney · King County</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section><div class="container"><div class="cta-wrap">
+  <div class="cta-title">Start free today.<br/>No credit card. No co-parent needed.</div>
+  <div class="cta-sub">Court-admissible documentation from your very first message. Upgrade whenever your situation requires it.</div>
+  <div class="cta-btns">
+    <a class="btn-primary" href="/early-access">Get Started Free →</a>
+    <a class="btn-outline" href="/how-it-works">See How It Works</a>
+  </div>
+  <div class="cta-note">Free plan · No card required · Patent Pending · Court-admissible in all 50 states<br/>Free access for DV survivors · Crisis tools always free · Cancel anytime</div>
+</div></div></section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="fg-logo">Accord<span>ly</span></div>
+        <div class="fg-tag">AI-powered co-parenting compliance, abuse detection, and child welfare platform. Built for every family.</div>
+        <div class="fg-patent">Patent Pending · USPTO #75170980<br/>© 2026 Accordly. All rights reserved.</div>
+      </div>
+      <div>
+        <div class="fg-col-title">Product</div>
+        <a class="fg-link" href="/features">Features</a>
+        <a class="fg-link" href="/how-it-works">How It Works</a>
+        <a class="fg-link" href="/pricing">Pricing</a>
+        <a class="fg-link" href="/early-access">Get Started</a>
+      </div>
+      <div>
+        <div class="fg-col-title">Professionals</div>
+        <a class="fg-link" href="/pricing">Attorney Pro</a>
+        <a class="fg-link" href="/pricing">Mediator Plan</a>
+        <a class="fg-link" href="/pricing">Court System</a>
+        <a class="fg-link" href="/pricing">GAL Portal</a>
+      </div>
+      <div>
+        <div class="fg-col-title">Company</div>
+        <a class="fg-link" href="/about">About</a>
+        <a class="fg-link" href="#">Privacy Policy</a>
+        <a class="fg-link" href="#">Terms of Service</a>
+        <a class="fg-link" href="#" style="color:var(--red)">🛡 DV Resources</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="fb-copy">© 2026 Accordly · Patent Pending · Not legal advice</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+        <div class="fb-links">
+          <a class="fb-link" href="#">Privacy</a>
+          <a class="fb-link" href="#">Terms</a>
+          <a class="fb-link" href="/early-access">Support</a>
+        </div>
+        <a class="safe-exit" href="https://weather.com">⚡ Safe Exit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

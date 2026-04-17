@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Accordly pricing — Free, Essential $9.99, Safe $17, Pro $24. Professional plans for attorneys, mediators, and courts. Free for DV survivors."/>
+<title>Pricing — Accordly</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--red:#ff5c5c;--red-dim:rgba(255,92,92,0.1);--orange:#ff8c42;--yellow:#f5c842;--yellow-dim:rgba(245,200,66,0.1);--blue:#6495ed;--blue-dim:rgba(100,149,237,0.1);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.1);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--muted2:#3a4a5a}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{color:var(--text);font-family:'Epilogue',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.93);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;gap:2rem}.nav-link{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;font-weight:500}.nav-link:hover,.nav-link.active{color:var(--teal)}
+.nav-right{display:flex;gap:0.65rem}
+.nav-btn{padding:0.42rem 1rem;border-radius:8px;font-size:0.8rem;font-family:inherit;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;font-weight:600}
+.btn-s{background:none;border:1px solid var(--border2);color:var(--text2)}.btn-s:hover{border-color:var(--teal);color:var(--teal)}
+.btn-c{background:var(--teal);border:none;color:#0b0f14;font-weight:700}.btn-c:hover{opacity:0.9}
+@media(max-width:800px){.nav-links{display:none}.btn-s{display:none}}
+.page-hero{padding:9rem 1.5rem 5rem;text-align:center;position:relative;overflow:hidden}
+.ph-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:40px 40px;z-index:0}
+.ph-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,201,167,0.06),transparent 65%);z-index:0}
+.ph-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.page-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--teal);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;gap:0.6rem}
+.page-eyebrow::before,.page-eyebrow::after{content:'';width:28px;height:1px;background:rgba(0,201,167,0.4)}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.75rem);font-weight:900;line-height:1.1;letter-spacing:-0.025em;margin-bottom:1rem}
+.page-title em{font-style:normal;color:var(--teal)}
+.page-sub{font-family:'Lora',serif;font-size:1.05rem;color:var(--text2);line-height:1.8;font-style:italic}
+.billing-toggle{display:flex;align-items:center;gap:0.85rem;margin:2rem auto 0;justify-content:center}
+.bt-label{font-size:0.8rem;color:var(--muted);font-weight:600}.bt-label.active{color:var(--text)}
+.toggle-track{width:48px;height:26px;background:var(--surface2);border:1px solid var(--border2);border-radius:50px;cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0}
+.toggle-track.on{background:var(--teal)}
+.toggle-thumb{width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:2px;left:2px;transition:transform 0.2s}
+.toggle-track.on .toggle-thumb{transform:translateX(22px)}
+.annual-badge{font-size:0.65rem;font-weight:700;background:rgba(0,201,167,0.15);color:var(--teal);border:1px solid rgba(0,201,167,0.25);padding:0.15rem 0.5rem;border-radius:50px}
+section{padding:5rem 1.5rem}
+.container{max-width:1100px;margin:0 auto}
+.section-eye{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.6rem}
+.section-eye::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(0,201,167,0.3),transparent)}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;line-height:1.15;margin-bottom:0.75rem;letter-spacing:-0.02em}
+.plans-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:1.75rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s}
+.plan-card:hover{transform:translateY(-4px)}
+.plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pc-free::before{background:var(--blue)}.pc-ess::before{background:var(--teal)}.pc-safe{border-color:rgba(0,201,167,0.35);background:linear-gradient(160deg,#0d1f1a,#0b0f14)}.pc-safe::before{background:linear-gradient(90deg,var(--teal),var(--teal2))}.pc-pro::before{background:var(--purple)}
+.plan-badge{position:absolute;top:1.1rem;right:1.1rem;font-size:0.58rem;font-weight:800;padding:0.18rem 0.5rem;border-radius:50px;background:var(--teal);color:#0b0f14;text-transform:uppercase;letter-spacing:0.04em}
+.plan-icon{font-size:1.6rem;margin-bottom:0.75rem}
+.plan-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:900;color:var(--text);margin-bottom:0.2rem}
+.plan-tagline{font-size:0.7rem;color:var(--muted);margin-bottom:1rem;line-height:1.4}
+.plan-price-num{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:900;color:var(--text);line-height:1}
+.teal{color:var(--teal)}
+.plan-price-per{font-size:0.72rem;color:var(--muted);margin-top:0.2rem}
+.plan-price-annual{font-size:0.68rem;color:var(--teal);margin-top:0.15rem;font-weight:600;min-height:1rem;margin-bottom:1rem}
+.plan-cta{width:100%;padding:0.75rem;border-radius:12px;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;cursor:pointer;border:none;transition:all 0.2s;margin-bottom:1.25rem}
+.cta-free{background:var(--surface2);color:var(--text);border:1px solid var(--border2)}.cta-free:hover{border-color:var(--teal);color:var(--teal)}
+.cta-ess,.cta-safe{background:var(--teal);color:#0b0f14}.cta-ess:hover,.cta-safe:hover{opacity:0.9}
+.cta-pro{background:var(--purple);color:#fff}.cta-pro:hover{opacity:0.9}
+.plan-feats{display:flex;flex-direction:column;gap:0.45rem;flex:1}
+.pf{display:flex;align-items:flex-start;gap:0.45rem;font-size:0.72rem;color:var(--text2);line-height:1.45}
+.pf-check{color:var(--teal);flex-shrink:0;font-size:0.75rem;margin-top:1px}
+.plan-divider{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin:0.6rem 0 0.4rem;display:flex;align-items:center;gap:0.4rem}
+.plan-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.dv-card{background:linear-gradient(135deg,rgba(255,92,92,0.07),rgba(167,139,250,0.04));border:1px solid rgba(255,92,92,0.2);border-radius:20px;padding:2rem 2.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:center;margin-bottom:3rem;position:relative;overflow:hidden}
+.dv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--purple),transparent)}
+.dv-icon{font-size:2.5rem}
+.dv-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:900;color:var(--text);margin-bottom:0.3rem}
+.dv-sub{font-size:0.78rem;color:var(--text2);line-height:1.6;max-width:520px}
+.dv-btn{padding:0.75rem 1.5rem;border-radius:12px;background:var(--red);color:#fff;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;border:none;cursor:pointer;white-space:nowrap}.dv-btn:hover{opacity:0.9}
+.pro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:3rem}
+.pro-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:1.5rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all 0.2s}
+.pro-card:hover{transform:translateY(-3px);border-color:var(--border2)}
+.pro-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pa::before{background:linear-gradient(90deg,var(--blue),transparent)}.pm::before{background:linear-gradient(90deg,var(--purple),transparent)}.pj::before{background:linear-gradient(90deg,var(--yellow),transparent)}.pc-court::before{background:linear-gradient(90deg,var(--teal),transparent)}
+.pro-role{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem}
+.pro-name{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:900;color:var(--text);margin-bottom:0.25rem}
+.pro-desc{font-size:0.7rem;color:var(--muted);line-height:1.45;margin-bottom:1rem;min-height:44px}
+.pro-price{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:900;color:var(--text);line-height:1;margin-bottom:0.2rem}
+.pro-price sub{font-size:0.7rem;font-weight:500;color:var(--muted)}
+.pro-price-note{font-size:0.65rem;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:1.1rem}
+.pro-cta{width:100%;padding:0.65rem;border-radius:10px;font-family:inherit;font-size:0.78rem;font-weight:700;cursor:pointer;border:none;margin-bottom:1.1rem;transition:all 0.2s}
+.pro-feats{display:flex;flex-direction:column;gap:0.45rem;flex:1}
+.pro-feat{display:flex;align-items:flex-start;gap:0.45rem;font-size:0.7rem;color:var(--text2);line-height:1.4}
+.prf-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.free-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem}
+.free-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+.fc-icon{font-size:1.4rem;margin-bottom:0.5rem}
+.fc-title{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;color:var(--text);margin-bottom:0.3rem}
+.fc-desc{font-size:0.72rem;color:var(--muted);line-height:1.55}
+.faq-wrap{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0;cursor:pointer;gap:1rem}
+.faq-q-text{font-size:0.88rem;font-weight:600;color:var(--text);line-height:1.4}
+.faq-icon{font-size:0.75rem;color:var(--teal);flex-shrink:0;transition:transform 0.2s;width:20px;height:20px;border-radius:50%;background:var(--teal-dim);display:flex;align-items:center;justify-content:center}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;font-size:0.78rem;color:var(--text2);line-height:1.75}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:1.1rem}
+.bottom-cta{text-align:center;padding:4rem 0 2rem}
+.bc-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--text);margin-bottom:0.75rem;line-height:1.2}
+.bc-title em{font-style:normal;color:var(--teal)}
+.bc-sub{font-size:0.85rem;color:var(--text2);margin-bottom:2rem;line-height:1.6}
+.bc-btns{display:flex;gap:0.85rem;justify-content:center;flex-wrap:wrap}
+.bc-p{padding:0.9rem 2.25rem;border-radius:13px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:800;border:none;cursor:pointer;text-decoration:none;display:inline-block}.bc-p:hover{opacity:0.9}
+.bc-g{padding:0.9rem 2.25rem;border-radius:13px;background:none;border:1px solid var(--border2);color:var(--text2);font-family:inherit;font-size:0.88rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}.bc-g:hover{border-color:var(--teal);color:var(--teal)}
+.bc-note{font-size:0.68rem;color:var(--muted);margin-top:1.1rem;line-height:1.5}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:4rem 1.5rem 2.5rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.fg-logo{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:900;color:var(--text);margin-bottom:0.5rem}.fg-logo span{color:var(--teal)}
+.fg-tag{font-size:0.78rem;color:var(--muted);line-height:1.65;max-width:260px;margin-bottom:1rem}
+.fg-patent{font-size:0.62rem;color:var(--muted2);font-family:'DM Mono',monospace}
+.fg-col-title{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);margin-bottom:0.9rem}
+.fg-link{display:block;font-size:0.78rem;color:var(--muted);text-decoration:none;margin-bottom:0.5rem;transition:color 0.2s}.fg-link:hover{color:var(--teal)}
+.footer-bottom{padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem}
+.fb-copy{font-size:0.72rem;color:var(--muted)}
+.fb-links{display:flex;gap:1.5rem}
+.fb-link{font-size:0.72rem;color:var(--muted);text-decoration:none;transition:color 0.2s}.fb-link:hover{color:var(--teal)}
+.safe-exit{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.72rem;font-weight:700;color:var(--red);border:1px solid rgba(255,92,92,0.25);padding:0.3rem 0.75rem;border-radius:6px;cursor:pointer;transition:all 0.2s;background:var(--red-dim);text-decoration:none}.safe-exit:hover{background:var(--red);color:#fff}
+@media(max-width:1000px){.plans-grid,.pro-grid,.free-grid{grid-template-columns:1fr 1fr}.dv-card{grid-template-columns:1fr;text-align:center}.footer-grid{grid-template-columns:1fr 1fr;gap:2rem}}
+@media(max-width:600px){.plans-grid,.pro-grid,.free-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <div class="nav-links">
+    <a class="nav-link" href="/features">Features</a>
+    <a class="nav-link" href="/how-it-works">How It Works</a>
+    <a class="nav-link active" href="/pricing">Pricing</a>
+    <a class="nav-link" href="/about">About</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-btn btn-s" href="/early-access">Sign In</a>
+    <a class="nav-btn btn-c" href="/early-access">Start Free</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="ph-bg"></div><div class="ph-glow"></div>
+  <div class="ph-content">
+    <div class="page-eyebrow">Pricing</div>
+    <div class="page-title">Start free.<br/><em>Upgrade when you need it.</em></div>
+    <p class="page-sub">One subscription covers you. The co-parent joins free. Crisis tools are always free — no matter what.</p>
+    <div class="billing-toggle">
+      <span class="bt-label active" id="lbl-monthly">Monthly</span>
+      <div class="toggle-track" id="billing-toggle" onclick="toggleBilling()"><div class="toggle-thumb"></div></div>
+      <span class="bt-label" id="lbl-annual">Annual</span>
+      <span class="annual-badge">Save 20%</span>
+    </div>
+  </div>
+</div>
+
+<!-- PARENT PLANS -->
+<section>
+  <div class="container">
+    <div class="section-eye">For Parents</div>
+    <div class="section-title">Every plan includes court-admissible documentation from day one.</div>
+    <div class="plans-grid">
+
+      <div class="plan-card pc-free">
+        <div class="plan-icon">🌱</div>
+        <div class="plan-name">Free</div>
+        <div class="plan-tagline">Core documentation and crisis tools. Always free.</div>
+        <div class="plan-price-num">$0</div>
+        <div class="plan-price-per">free forever · no card needed</div>
+        <div class="plan-price-annual"></div>
+        <button class="plan-cta cta-free" onclick="selectPlan('free')">Get Started Free</button>
+        <div class="plan-feats">
+          <div class="pf"><span class="pf-check">✓</span>Timestamped messaging</div>
+          <div class="pf"><span class="pf-check">✓</span>Shared custody calendar</div>
+          <div class="pf"><span class="pf-check">✓</span>Basic expense tracking</div>
+          <div class="pf"><span class="pf-check">✓</span>Child profiles</div>
+          <div class="pf"><span class="pf-check">✓</span>Crisis Decision Engine</div>
+          <div class="pf"><span class="pf-check">✓</span>Emergency 30-day export</div>
+          <div class="pf"><span class="pf-check">✓</span>Safe exit button</div>
+          <div class="pf"><span class="pf-check">✓</span>DV resources — always</div>
+        </div>
+      </div>
+
+      <div class="plan-card pc-ess">
+        <div class="plan-icon">⚡</div>
+        <div class="plan-name">Essential</div>
+        <div class="plan-tagline">AI analysis and full documentation for everyday co-parenting.</div>
+        <div class="plan-price-num" id="price-essential">$9.99</div>
+        <div class="plan-price-per">per month</div>
+        <div class="plan-price-annual" id="annual-essential"></div>
+        <button class="plan-cta cta-ess" onclick="selectPlan('essential')">Start Essential</button>
+        <div class="plan-feats">
+          <div class="plan-divider">Everything in Free, plus</div>
+          <div class="pf"><span class="pf-check">✓</span>AI pre-send message analysis</div>
+          <div class="pf"><span class="pf-check">✓</span>Court report generator</div>
+          <div class="pf"><span class="pf-check">✓</span>Medication tracker</div>
+          <div class="pf"><span class="pf-check">✓</span>School &amp; activities hub</div>
+          <div class="pf"><span class="pf-check">✓</span>GPS location check-in</div>
+          <div class="pf"><span class="pf-check">✓</span>Documented video calls</div>
+          <div class="pf"><span class="pf-check">✓</span>Swap &amp; trade requests</div>
+        </div>
+      </div>
+
+      <div class="plan-card pc-safe">
+        <div class="plan-badge">Most Popular</div>
+        <div class="plan-icon">🛡</div>
+        <div class="plan-name">Safe</div>
+        <div class="plan-tagline">The full AI safety suite for high-conflict and safety situations.</div>
+        <div class="plan-price-num teal" id="price-safe">$17</div>
+        <div class="plan-price-per">per month</div>
+        <div class="plan-price-annual" id="annual-safe"></div>
+        <button class="plan-cta cta-safe" onclick="selectPlan('safe')">Start Safe</button>
+        <div class="plan-feats">
+          <div class="plan-divider">Everything in Essential, plus</div>
+          <div class="pf"><span class="pf-check">✓</span>Abuse detection — 12 categories</div>
+          <div class="pf"><span class="pf-check">✓</span>Coercive control recognition</div>
+          <div class="pf"><span class="pf-check">✓</span>Parental alienation detection</div>
+          <div class="pf"><span class="pf-check">✓</span>Parent fitness scoring</div>
+          <div class="pf"><span class="pf-check">✓</span>DHS enforcement reports</div>
+          <div class="pf"><span class="pf-check">✓</span>Child wellness check-ins</div>
+          <div class="pf"><span class="pf-check">✓</span>ROFR tracking</div>
+          <div class="pf"><span class="pf-check">✓</span>30-day pattern analysis</div>
+        </div>
+      </div>
+
+      <div class="plan-card pc-pro">
+        <div class="plan-icon">🏛</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-tagline">The complete platform for the most complex cases.</div>
+        <div class="plan-price-num" id="price-pro">$24</div>
+        <div class="plan-price-per">per month</div>
+        <div class="plan-price-annual" id="annual-pro"></div>
+        <button class="plan-cta cta-pro" onclick="selectPlan('pro')">Start Pro</button>
+        <div class="plan-feats">
+          <div class="plan-divider">Everything in Safe, plus</div>
+          <div class="pf"><span class="pf-check">✓</span>AI court report narrative</div>
+          <div class="pf"><span class="pf-check">✓</span>Modification tracker</div>
+          <div class="pf"><span class="pf-check">✓</span>Settlement negotiation AI</div>
+          <div class="pf"><span class="pf-check">✓</span>Court deadline tracker</div>
+          <div class="pf"><span class="pf-check">✓</span>Financial disclosure tool</div>
+          <div class="pf"><span class="pf-check">✓</span>Supervised visitation docs</div>
+          <div class="pf"><span class="pf-check">✓</span>Multi-state &amp; international</div>
+          <div class="pf"><span class="pf-check">✓</span>Divorce roadmap</div>
+          <div class="pf"><span class="pf-check">✓</span>Priority support</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="text-align:center;font-size:0.75rem;color:var(--muted)">Annual billing saves 20% · Cancel anytime · No co-parent payment required · Court-admissible in all 50 states</p>
+  </div>
+</section>
+
+<!-- DV FREE ACCESS -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3rem 1.5rem">
+  <div class="container">
+    <div class="dv-card">
+      <div class="dv-icon">🛡</div>
+      <div>
+        <div class="dv-title">Free access for DV survivors and families in hardship</div>
+        <div class="dv-sub">If you are experiencing domestic violence or cannot afford a paid plan, Accordly will make sure you have access to the tools you need. No documentation required for DV situations. Your application is completely private — the co-parent is never notified.</div>
+      </div>
+      <div><button class="dv-btn" onclick="applyWaiver()">Apply for Free Access</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSIONAL PLANS -->
+<section>
+  <div class="container">
+    <div class="section-eye">For Professionals</div>
+    <div class="section-title">Purpose-built for every legal professional in the room.</div>
+    <p style="font-family:'Lora',serif;font-size:0.95rem;color:var(--text2);font-style:italic;line-height:1.8;margin-bottom:2.5rem;max-width:620px">Attorneys, mediators, guardians ad litem, and family court judges each get a purpose-built view — not a generic dashboard shared across roles.</p>
+    <div class="pro-grid">
+
+      <div class="pro-card pa">
+        <div class="pro-role" style="color:var(--blue)">Family Law Attorney</div>
+        <div class="pro-name">Attorney Pro</div>
+        <div class="pro-desc">Multi-case dashboard with AI compliance reports, violation tracking, and one-click court filing prep.</div>
+        <div class="pro-price">$99<sub>/mo</sub></div>
+        <div class="pro-price-note">Per attorney · Unlimited cases</div>
+        <button class="pro-cta" style="background:var(--blue-dim);color:var(--blue);border:1px solid rgba(100,149,237,0.25)" onclick="selectPlan('attorney')">Apply for Access</button>
+        <div class="pro-feats">
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>Multi-case management dashboard</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>AI compliance reports per case</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>Parent fitness scores side-by-side</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>Court report export — one click</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>Violation timeline per client</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--blue)"></div>Bar license verification</div>
+        </div>
+      </div>
+
+      <div class="pro-card pm">
+        <div class="pro-role" style="color:var(--purple)">Mediator / Parenting Coordinator</div>
+        <div class="pro-name">Mediator Plan</div>
+        <div class="pro-desc">Shared session documentation, side-by-side compliance comparison, and agreement tracking.</div>
+        <div class="pro-price">$149<sub>/mo</sub></div>
+        <div class="pro-price-note">Up to 5 seats included</div>
+        <button class="pro-cta" style="background:var(--purple-dim);color:var(--purple);border:1px solid rgba(167,139,250,0.25)" onclick="selectPlan('mediator')">Apply for Access</button>
+        <div class="pro-feats">
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Side-by-side compliance view</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Session note documentation</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Settlement agreement tracker</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Communication protocol tools</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Conflict pattern analysis</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--purple)"></div>Multi-party secure access</div>
+        </div>
+      </div>
+
+      <div class="pro-card pj">
+        <div class="pro-role" style="color:var(--yellow)">Guardian Ad Litem · Judicial</div>
+        <div class="pro-name">Judicial Access</div>
+        <div class="pro-desc">Child-welfare focused view, independent from either parent. 72-provision judicial playbook included.</div>
+        <div class="pro-price">$199<sub>/mo</sub></div>
+        <div class="pro-price-note">Verified judicial appointment required</div>
+        <button class="pro-cta" style="background:var(--yellow-dim);color:var(--yellow);border:1px solid rgba(245,200,66,0.25)" onclick="selectPlan('judge')">Apply for Access</button>
+        <div class="pro-feats">
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>Child-welfare focused GAL portal</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>Independent from either parent's data</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>72-provision judicial playbook</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>Research-backed custody provisions</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>Child wellness trend reports</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--yellow)"></div>Appointment verification required</div>
+        </div>
+      </div>
+
+      <div class="pro-card pc-court">
+        <div class="pro-role" style="color:var(--teal)">Court Systems · Counties · States</div>
+        <div class="pro-name">Court License</div>
+        <div class="pro-desc">County or state-wide licensing with court-mandate capability, bulk access, and dedicated support.</div>
+        <div class="pro-price" style="font-size:1.3rem;padding-top:0.4rem">Custom</div>
+        <div class="pro-price-note">Based on jurisdiction size</div>
+        <button class="pro-cta" style="background:var(--teal-dim2);color:var(--teal);border:1px solid rgba(0,201,167,0.25)" onclick="selectPlan('court')">Contact Us</button>
+        <div class="pro-feats">
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>Court-mandate integration</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>Bulk parent account provisioning</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>County-wide analytics dashboard</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>Dedicated implementation support</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>Custom SLA and data agreements</div>
+          <div class="pro-feat"><div class="prf-dot" style="background:var(--teal)"></div>NCJFCJ partnership track</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ALWAYS FREE -->
+<section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-eye" style="justify-content:center">Always Free</div>
+      <div class="section-title" style="text-align:center">Safety tools are never paywalled.</div>
+    </div>
+    <div class="free-grid">
+      <div class="free-card"><div class="fc-icon">🧠</div><div class="fc-title">Crisis Decision Engine</div><div class="fc-desc">Situation assessment → one clear directive. Leave, call 911, escalate to court, or document. Available on every plan, always.</div></div>
+      <div class="free-card"><div class="fc-icon">📤</div><div class="fc-title">Emergency Export</div><div class="fc-desc">One-tap export of the last 30 days of documentation sent to your emergency contacts. Free on all plans.</div></div>
+      <div class="free-card"><div class="fc-icon">⚡</div><div class="fc-title">Safe Exit</div><div class="fc-desc">Instantly redirects your browser to a neutral page. Pinned to every screen, cannot be scrolled away.</div></div>
+      <div class="free-card"><div class="fc-icon">📞</div><div class="fc-title">DV Hotline</div><div class="fc-desc">National DV Hotline 1-800-799-7233 pinned to the crisis screen. Tap to call. Always free.</div></div>
+      <div class="free-card"><div class="fc-icon">📋</div><div class="fc-title">Basic Documentation</div><div class="fc-desc">Timestamped messaging, shared custody calendar, and child profiles. The foundation of your court record, free forever.</div></div>
+      <div class="free-card"><div class="fc-icon">🛡</div><div class="fc-title">Hardship Access</div><div class="fc-desc">Full Safe plan features for DV survivors and families who qualify. No documentation required for DV situations.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <div class="section-title" style="text-align:center">Common questions</div>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">Does the co-parent need to pay?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">No. Your subscription covers your account. The co-parent is invited to join on the Free plan at no cost with access to the shared calendar, messaging, and expense tracking. We do not require both parties to pay. If the co-parent wants AI features or advanced tools, they can upgrade independently — but it is never required for you to use the platform.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">What if my co-parent refuses to join?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Accordly works even if your co-parent never joins. You can document all communication that happens outside the platform, log violations, track payments, record missed visits, and generate court reports entirely from your own account. The documentation you build is yours regardless of whether the co-parent participates.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">Is Accordly documentation admissible in court?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Accordly's documentation is designed to be court-admissible in all 50 states. All records are timestamped, tamper-evident, and cannot be altered after creation. AI-generated reports include a disclosure statement consistent with current evidentiary standards. Accordly is Patent Pending (USPTO Receipt #75170980). Consult your attorney on admissibility in your specific jurisdiction.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">How does free access for DV survivors work?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Apply through the button on this page or email safety@accordly.app. You qualify if you are experiencing domestic violence or intimate partner violence, receiving public assistance (SNAP, Medicaid, SSI), or working with a legal aid organization. No documentation is required for DV situations. Your application is completely private — the co-parent is never notified. Approved accounts receive full Safe plan features at no cost.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">Can I upgrade or downgrade anytime?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Yes. You can upgrade, downgrade, or cancel at any time from your account settings. When you downgrade, you keep access to paid features until the end of the billing period. When you cancel, your account moves to the Free plan and your documentation is preserved — you never lose your records.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFAQ(this)"><div class="faq-q-text">What happens to my data if I cancel?</div><div class="faq-icon">+</div></div>
+        <div class="faq-a">Your documentation is never deleted when you cancel. Your account moves to the Free plan and all timestamped records, messages, and reports remain accessible. You can export your full record at any time. If you need to close your account entirely, you can request a full data export before deletion.</div>
+      </div>
+    </div>
+
+    <div class="bottom-cta">
+      <div class="bc-title">Start free.<br/><em>No credit card, no co-parent needed.</em></div>
+      <div class="bc-sub">Court-admissible documentation from your very first message.</div>
+      <div class="bc-btns">
+        <a class="bc-p" href="/early-access">Get Started Free →</a>
+        <a class="bc-g" href="/features">See All Features</a>
+      </div>
+      <div class="bc-note">Free plan · No card required · Patent Pending · Court-admissible in all 50 states<br/>Free access for DV survivors · Crisis tools always free · Cancel anytime</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="fg-logo">Accord<span>ly</span></div>
+        <div class="fg-tag">AI-powered co-parenting compliance, abuse detection, and child welfare platform. Built for every family.</div>
+        <div class="fg-patent">Patent Pending · USPTO #75170980<br/>© 2026 Accordly. All rights reserved.</div>
+      </div>
+      <div>
+        <div class="fg-col-title">Product</div>
+        <a class="fg-link" href="/features">Features</a>
+        <a class="fg-link" href="/how-it-works">How It Works</a>
+        <a class="fg-link" href="/pricing">Pricing</a>
+        <a class="fg-link" href="/early-access">Get Started</a>
+      </div>
+      <div>
+        <div class="fg-col-title">Professionals</div>
+        <a class="fg-link" href="/pricing">Attorney Pro</a>
+        <a class="fg-link" href="/pricing">Mediator Plan</a>
+        <a class="fg-link" href="/pricing">Court System</a>
+        <a class="fg-link" href="/pricing">GAL Portal</a>
+      </div>
+      <div>
+        <div class="fg-col-title">Company</div>
+        <a class="fg-link" href="/about">About</a>
+        <a class="fg-link" href="#">Privacy Policy</a>
+        <a class="fg-link" href="#">Terms of Service</a>
+        <a class="fg-link" href="#" style="color:var(--red)">🛡 DV Resources</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="fb-copy">© 2026 Accordly · Patent Pending · Not legal advice</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+        <div class="fb-links">
+          <a class="fb-link" href="#">Privacy</a>
+          <a class="fb-link" href="#">Terms</a>
+          <a class="fb-link" href="/early-access">Support</a>
+        </div>
+        <a class="safe-exit" href="https://weather.com">⚡ Safe Exit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+let isAnnual = false;
+const prices = {
+  essential: { monthly:'$9.99', annual:'$7.99', note:'$95.88 billed annually' },
+  safe:      { monthly:'$17',   annual:'$13',   note:'$156 billed annually' },
+  pro:       { monthly:'$24',   annual:'$19',   note:'$228 billed annually' },
+};
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  document.getElementById('billing-toggle').classList.toggle('on', isAnnual);
+  document.getElementById('lbl-monthly').classList.toggle('active', !isAnnual);
+  document.getElementById('lbl-annual').classList.toggle('active', isAnnual);
+  for (const [p, v] of Object.entries(prices)) {
+    const n = document.getElementById('price-' + p);
+    const a = document.getElementById('annual-' + p);
+    if (n) n.textContent = isAnnual ? v.annual : v.monthly;
+    if (a) a.textContent = isAnnual ? v.note : '';
+  }
+}
+function selectPlan(plan) {
+  const msgs = {
+    free: 'Starting your free Accordly account…\n\nNo credit card required. Free forever.',
+    essential: `Starting Accordly Essential…\n\n${isAnnual ? '$7.99/mo · $95.88 billed annually' : '$9.99/mo · Cancel anytime'}.`,
+    safe: `Starting Accordly Safe…\n\n${isAnnual ? '$13/mo · $156 billed annually' : '$17/mo · Cancel anytime'}.`,
+    pro: `Starting Accordly Pro…\n\n${isAnnual ? '$19/mo · $228 billed annually' : '$24/mo · Cancel anytime'}.`,
+    attorney: 'Attorney Pro — we will verify your bar license and set up your account within 1 business day.\nContact: hello@accordly.app',
+    mediator: 'Mediator plan — contact: hello@accordly.app',
+    judge: 'Judicial access — we verify all appointments.\nContact: hello@accordly.app',
+    court: 'Court system licensing — we will reach out within 1 business day.\nContact: enterprise@accordly.app',
+  };
+  alert(msgs[plan] || 'Starting your plan…');
+}
+function applyWaiver() {
+  alert('Applying for free access…\n\nYou may qualify if:\n· You are experiencing domestic violence or IPV\n· You receive SNAP, Medicaid, SSI, or other assistance\n· You are working with a legal aid organization\n\nNo documentation required for DV situations.\nYour application is private.\n\nEmail: safety@accordly.app\n\nYou deserve these tools. We will make sure you have them. 💚');
+}
+function toggleFAQ(el) {
+  const item = el.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
