@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><link rel="icon" href="data:image/x-icon;base64,AAABAAIAEBAAAAAAIAChAgAAJgAAACAgAAAAACAASAEAAMcCAACJUE5HDQoaCgAAAA1JSERSAAAAEAAAABAIBgAAAB/z/2EAAAJoSURBVHicbZPPaxNBFMc/b3czu+kmTWOiFjwU0Z6KCqJCD3qoRerBWA8eKp56EDz2Wu9eRPEH9g+QgkWLh56KqFAUClqMqAdFUUEKoq2/+iPZZHefh02aBjswDMy873fmvfk8AUhnCyXLkvuADdiIsOVQBYiAKI71bGVleUYyXYXTqnIX8ACwRAgjiBWaPgpYAo4NceICVEV0RPxcUTeFCZUAOn3UM22XS7UGf9cg7bZiAaclFiEICI8fJrh8Efm2DFGcnNoW2l3EHb+NM1cG1whxrIAkBpYlsrJGMHaO+ugpzMQ0zsxTiKKGgU1YOkpwbQy9dQ8zMYUWCkmqfq6ofq6omUxe7RuX1C2d0Ayony2o7+fVdzvV7yxqBlFvaEB5Na3esf5kP79DN9cA4hjCCDo8CGrgGjSfRRZ/gN+BLP1k/cEVrHdf8MZvosVCowYiENSTNe1BPQSTIrhwBopdOLPzOM/KaNrFXJ8C10E9D6IYqymO+nqIendBNYA4RvOd6PYurA9fifbvhUoAGR/7+VvsuTJ4aYgVC0uQao1w325qpX4kCMFzkcXvpGbnUd/DTM6iuSysV8E1SYoNHCxiRT2D8/Ij8c484aFeZOk3mBTO4wXcq3dgdR35s0p4YA/VkQEkjDbK5qAKnsF5/QnzcIHq6BCmexvOi/eon04IVKgPHqR28gipJ+WkRo4HGtP8BUUShMO+HoLzg8ivlYQ3EuY0n8WdfITz5jOknA0a/0e5FkLaoCbVjnKtDpUamJa40To6DFQ2TNwU1CNkrdI2qUfgpppigIqIDgts0c6NZ29OgRZube38D3K3BZhBdFTKAAAAAElFTkSuQmCCiVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABD0lEQVR4nO1XsRHDIAwUunQUaTKTx/AG3sE7ZIOMkZnSuKBOmnCncIBeYOMmX2ED+hd667CjBP56e6fv9kTYXk4+80jyHAeXJkaJ4NHkqQh3BrkE60uOxQVdGJ53U2A/LdA66ASs5JY9VQ/kgmiZWffAJUCPNK5DT6BYAhkAJc8J0cQUBcQALeQWEVUT9pCjOLwPaEnAJsyh1ydEHa04kvtp+Rlb0VWCPYyaFRDWmcI6q5tj5i2dsioAQdpwdvWAzN6vj6bAKA7/DLVSZgXIrBEvaOS1GOVW3CkCLSN+IfkG1DxhFQs1otYyIAaGTNjyJaB7/rdiTv/VRiJsL8dxcAY5kSjBSBGSi0sTI8iJiD73WHg6HgTkTAAAAABJRU5ErkJggg=="/><link rel="apple-touch-icon" href="data:image/png;base64,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"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Early Access — Accordly</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--red:#ff5c5c;}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{color:var(--text);font-family:'Epilogue',sans-serif;overflow-x:hidden;background:var(--bg);min-height:100vh}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-center{display:flex;gap:2rem}.nav-link{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s}.nav-link:hover,.nav-link.active{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.nav-btn{padding:0.45rem 1.1rem;border-radius:8px;font-size:0.82rem;font-family:inherit;transition:all 0.2s;text-decoration:none;display:inline-block}
+.nav-signin{background:none;border:1px solid var(--border);color:var(--text2)}.nav-signin:hover{border-color:var(--teal);color:var(--teal)}
+.nav-cta{background:var(--teal);border:none;color:#0b0f14;font-weight:700}
+@media(max-width:768px){.nav-center{display:none}.nav-signin{display:none}}
+
+/* HERO FORM */
+.ea-hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.ea-left{padding:8rem 3rem 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.ea-right{display:flex;align-items:center;justify-content:center;padding:8rem 3rem 4rem;position:relative}
+.ea-right::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,0.04),transparent);border-left:1px solid var(--border)}
+.bg-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:40px 40px;z-index:0}
+.bg-glow{position:absolute;top:40%;left:30%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(0,201,167,0.06),transparent 70%);z-index:0}
+.ea-eyebrow{font-size:0.7rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase;color:var(--teal);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.ea-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.ea-title{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,4vw,3.5rem);font-weight:900;line-height:1.1;letter-spacing:-0.025em;margin-bottom:1.25rem}
+.ea-title em{font-style:normal;color:var(--teal)}
+.ea-sub{font-family:'Lora',serif;font-size:1rem;color:var(--text2);line-height:1.8;font-style:italic;margin-bottom:2rem}
+.ea-proof{display:flex;flex-direction:column;gap:0.6rem}
+.ea-proof-item{display:flex;align-items:center;gap:0.6rem;font-size:0.8rem;color:var(--text2)}
+.ep-check{color:var(--teal);font-size:0.85rem}
+
+/* FORM CARD */
+.form-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:2.5rem;width:100%;max-width:440px;position:relative;z-index:1}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal2));border-radius:24px 24px 0 0}
+.fc-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.3rem}
+.fc-sub{font-size:0.78rem;color:var(--muted);margin-bottom:1.75rem;line-height:1.5}
+.form-group{margin-bottom:1rem}
+.form-label{display:block;font-size:0.68rem;font-weight:600;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;margin-bottom:0.35rem}
+.form-input,.form-select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:0.7rem 0.9rem;color:var(--text);font-size:0.875rem;font-family:inherit;outline:none;transition:border-color 0.2s}
+.form-input:focus,.form-select:focus{border-color:rgba(0,201,167,0.4)}
+.form-select option{background:var(--surface2)}
+.form-input::placeholder{color:var(--muted)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.submit-btn{width:100%;padding:0.9rem;border-radius:12px;border:none;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:0.5rem}
+.submit-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,201,167,0.25)}
+.form-note{font-size:0.68rem;color:var(--muted);text-align:center;margin-top:0.85rem}
+.form-success{display:none;text-align:center;padding:1.5rem 0}
+.fs-icon{font-size:3rem;margin-bottom:0.75rem}
+.fs-title{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:0.5rem;color:var(--teal)}
+.fs-body{font-size:0.85rem;color:var(--text2);line-height:1.65}
+
+/* AUDIENCE TABS */
+.audience{padding:5rem 1.5rem;background:var(--surface);border-top:1px solid var(--border)}
+.container{max-width:1100px;margin:0 auto}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(1.7rem,3.5vw,2.25rem);font-weight:900;line-height:1.15;margin-bottom:1rem;letter-spacing:-0.02em}
+.aud-tabs{display:flex;gap:0.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.aud-tab{padding:0.45rem 1rem;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);font-size:0.8rem;font-family:inherit;cursor:pointer;transition:all 0.15s}
+.aud-tab:hover{color:var(--text);border-color:var(--border2)}
+.aud-tab.active{background:var(--teal-dim2);border-color:rgba(0,201,167,0.3);color:var(--teal);font-weight:600}
+.aud-panel{display:none}.aud-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.ap-text h3{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;margin-bottom:0.75rem}
+.ap-text p{font-family:'Lora',serif;font-size:0.95rem;line-height:1.8;color:var(--text2);margin-bottom:0.75rem}
+.ap-items{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem}
+.ap-item{display:flex;align-items:flex-start;gap:0.5rem;font-size:0.8rem;color:var(--text2);line-height:1.5}
+.ap-check{color:var(--teal);flex-shrink:0;margin-top:0.1rem}
+.ap-price{font-size:0.82rem;font-weight:600;color:var(--teal);padding:0.3rem 0.75rem;border-radius:6px;background:var(--teal-dim);display:inline-block}
+.ap-visual{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem;font-size:0.78rem;color:var(--text2)}
+.apv-header{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;margin-bottom:1rem;color:var(--text)}
+.apv-item{display:flex;justify-content:space-between;padding:0.45rem 0;border-bottom:1px solid var(--border);font-size:0.75rem;color:var(--text2)}
+.apv-item:last-child{border-bottom:none}
+.apv-val{font-weight:600}
+.apv-teal{color:var(--teal)}.apv-red{color:var(--red)}
+
+/* WHAT TO EXPECT */
+.expect{padding:5rem 1.5rem}
+.expect-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem}
+.es-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.es-num{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:900;color:var(--teal);opacity:0.2;line-height:1;margin-bottom:0.5rem}
+.es-title{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:0.4rem}
+.es-body{font-size:0.78rem;color:var(--text2);line-height:1.65}
+
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity 0.65s ease,transform 0.65s ease}
+.fade-up.visible{opacity:1;transform:none}
+footer{background:var(--surface);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:0.4rem}.footer-logo span{color:var(--teal)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:0.75rem}
+.footer-links a{font-size:0.78rem;color:var(--muted);text-decoration:none}.footer-links a:hover{color:var(--teal)}
+.footer-copy{font-size:0.7rem;color:var(--muted)}
+@media(max-width:900px){.ea-hero{grid-template-columns:1fr}.ea-right{padding:3rem 1.5rem}.aud-panel.active{grid-template-columns:1fr}.expect-steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <div class="nav-center">
+    <a class="nav-link" href="/features">Features</a>
+    <a class="nav-link" href="/how-it-works">How It Works</a>
+    <a class="nav-link" href="/pricing">Pricing</a>
+    <a class="nav-link" href="/about">About</a>
+    <a class="nav-link active" href="/early-access">Early Access</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-btn nav-signin" href="/early-access">Sign In</a>
+    <a class="nav-btn nav-cta" href="/early-access">Get Early Access</a>
+  </div>
+</nav>
+
+<div class="ea-hero">
+  <div class="bg-dots"></div><div class="bg-glow"></div>
+  <div class="ea-left">
+    <div class="ea-eyebrow"><div class="ea-badge-dot"></div>Early Access — Limited Spots</div>
+    <h1 class="ea-title">Your path forward<br>starts <em>today.</em></h1>
+    <p class="ea-sub">Join the waitlist for early access to Accordly. Be among the first parents, attorneys, and courts to use the platform that changes everything about co-parenting compliance.</p>
+    <div class="ea-proof">
+      <div class="ea-proof-item"><span class="ep-check">✓</span>Early access pricing locked in for life</div>
+      <div class="ea-proof-item"><span class="ep-check">✓</span>Personal onboarding support from the founder</div>
+      <div class="ea-proof-item"><span class="ep-check">✓</span>Shape the product — your feedback drives features</div>
+      <div class="ea-proof-item"><span class="ep-check">✓</span>Payment plans available on all parent tiers</div>
+      <div class="ea-proof-item"><span class="ep-check">✓</span>Patent Pending · accordly.app</div>
+    </div>
+  </div>
+  <div class="ea-right">
+    <div class="form-card">
+      <div id="ea-form">
+        <!-- Hidden Netlify form -->
+        <form name="early-access" netlify netlify-honeypot="bot-field" hidden>
+          <input type="text" name="first-name"/><input type="text" name="last-name"/>
+          <input type="email" name="email"/><input type="text" name="role"/>
+          <input type="text" name="state"/><input type="text" name="bot-field"/>
+        </form>
+        <div class="fc-title">Join the Waitlist</div>
+        <div class="fc-sub">Takes 60 seconds. No spam — one email when early access opens.</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name</label><input class="form-input" type="text" id="fn" placeholder="First name"/></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input class="form-input" type="text" id="ln" placeholder="Last name"/></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="em" placeholder="your@email.com"/></div>
+        <div class="form-group">
+          <label class="form-label">I am joining as</label>
+          <select class="form-select" id="role">
+            <option value="">Select your role...</option>
+            <option>A parent / custodian</option>
+            <option>A family law attorney</option>
+            <option>A mediator</option>
+            <option>A judge / commissioner</option>
+            <option>A domestic violence advocate</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">State</label>
+          <select class="form-select" id="state">
+            <option value="">Select your state...</option>
+            <option>Washington</option><option>California</option><option>Texas</option><option>Florida</option><option>New York</option><option>Illinois</option><option>Pennsylvania</option><option>Ohio</option><option>Georgia</option><option>North Carolina</option><option>Michigan</option><option>Other</option>
+          </select>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Join the Waitlist →</button>
+        <div class="form-note">🔒 Your information is private and will never be shared.</div>
+      </div>
+      <div class="form-success" id="ea-success">
+        <div class="fs-icon">💚</div>
+        <div class="fs-title">You're on the list!</div>
+        <div class="fs-body">Thank you for joining the Accordly waitlist. We'll reach out personally when early access opens — and your spot is now reserved.<br/><br/>In the meantime, explore what Accordly does below.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO ARE YOU -->
+<section class="audience">
+<div class="container">
+  <h2 class="section-title fade-up">What early access looks like<br>for you specifically.</h2>
+  <div class="aud-tabs">
+    <button class="aud-tab active" onclick="showAud('parent')">👩‍👦 Parents</button>
+    <button class="aud-tab" onclick="showAud('attorney')">⚖️ Attorneys</button>
+    <button class="aud-tab" onclick="showAud('mediator')">🤝 Mediators</button>
+    <button class="aud-tab" onclick="showAud('judge')">🏛 Judges & Courts</button>
+  </div>
+  <div class="aud-panel active" id="aud-parent">
+    <div class="ap-text">
+      <h3>For Parents</h3>
+      <p>Whether you are co-parenting or parallel parenting, Accordly gives you the documentation, structure, and clear path forward you deserve — starting from your very first login.</p>
+      <div class="ap-items">
+        <div class="ap-item"><span class="ap-check">✓</span>Guided onboarding walks you through setup in 10 minutes</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Upload your parenting plan — AI extracts every obligation automatically</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Every visit, payment, and message logged from day one</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Court report ready the moment you need it</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Payment plans available — Parent Basic from $199/yr or $23/mo</div>
+      </div>
+      <div class="ap-price">From $199/year · or $23/month</div>
+    </div>
+    <div class="ap-visual">
+      <div class="apv-header">Your compliance dashboard — day one</div>
+      <div class="apv-item">Your fitness score<span class="apv-val apv-teal">87 — Compliant ✓</span></div>
+      <div class="apv-item">Visits this month<span class="apv-val apv-teal">6 of 6 completed</span></div>
+      <div class="apv-item">Payments current<span class="apv-val apv-teal">Yes ✓</span></div>
+      <div class="apv-item">Plan obligations<span class="apv-val apv-teal">18 of 20 met</span></div>
+      <div class="apv-item">AI flags this month<span class="apv-val apv-teal">0</span></div>
+      <div style="margin-top:0.85rem;padding:0.6rem;background:var(--teal-dim);border-radius:8px;font-size:0.72rem;color:var(--teal)">✦ Court report ready · One tap to generate</div>
+    </div>
+  </div>
+  <div class="aud-panel" id="aud-attorney">
+    <div class="ap-text">
+      <h3>For Family Law Attorneys</h3>
+      <p>Accordly turns hours of documentation work into seconds — and gives your high-conflict clients a tool that generates the evidence your cases need without requiring manual recordkeeping.</p>
+      <div class="ap-items">
+        <div class="ap-item"><span class="ap-check">✓</span>Professional case dashboard — all clients in one view</div>
+        <div class="ap-item"><span class="ap-check">✓</span>One-click court reports — ready to attach to any filing</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Retainer tracking, invoicing, and IOLTA trust tools</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Recommend Accordly to every high-conflict client</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Early access includes a 30-minute onboarding call</div>
+      </div>
+      <div class="ap-price">$1,299/year · per attorney · license verified</div>
+    </div>
+    <div class="ap-visual">
+      <div class="apv-header">Your professional dashboard</div>
+      <div class="apv-item">Active cases<span class="apv-val">12</span></div>
+      <div class="apv-item">Urgent alerts<span class="apv-val apv-red">4 — action needed</span></div>
+      <div class="apv-item">Reports generated (month)<span class="apv-val apv-teal">34</span></div>
+      <div class="apv-item">Retainers — low balance<span class="apv-val apv-red">3 clients</span></div>
+      <div class="apv-item">Hearing this week<span class="apv-val apv-teal">Apr 14 — report ready</span></div>
+    </div>
+  </div>
+  <div class="aud-panel" id="aud-mediator">
+    <div class="ap-text">
+      <h3>For Mediators</h3>
+      <p>Accordly gives you objective data for both parties — replacing competing narratives with compliance records, and giving your sessions a factual foundation that accelerates agreement.</p>
+      <div class="ap-items">
+        <div class="ap-item"><span class="ap-check">✓</span>See both parents' fitness scores side by side — neutral view</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Compliance data informs mediation sessions with facts not feelings</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Share case access directly with attorneys and the court</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Mediation firm tier covers up to 5 mediators</div>
+      </div>
+      <div class="ap-price">$1,999/year · mediation firm · up to 5 users</div>
+    </div>
+    <div class="ap-visual">
+      <div class="apv-header">Neutral case view — both parties</div>
+      <div class="apv-item">Parent A fitness score<span class="apv-val apv-teal">87 — Compliant</span></div>
+      <div class="apv-item">Parent B fitness score<span class="apv-val apv-red">44 — Non-compliant</span></div>
+      <div class="apv-item">Communication health<span class="apv-val apv-red">3 flags this month</span></div>
+      <div class="apv-item">Shared expenses settled<span class="apv-val">$245 of $320</span></div>
+      <div class="apv-item">AI insight<span class="apv-val" style="font-size:0.68rem">Plan revision recommended</span></div>
+    </div>
+  </div>
+  <div class="aud-panel" id="aud-judge">
+    <div class="ap-text">
+      <h3>For Judges & Courts</h3>
+      <p>Accordly gives the bench a quantitative record, a research-backed plan playbook, and a tool you can mandate by name in your orders — reducing return filings and protecting children more effectively.</p>
+      <div class="ap-items">
+        <div class="ap-item"><span class="ap-check">✓</span>72-provision parenting plan playbook with court order language</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Read-only compliance view for both parents</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Mandate Accordly by name in custody orders</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Court system licenses for unlimited judicial users</div>
+        <div class="ap-item"><span class="ap-check">✓</span>Demo available — contact us directly</div>
+      </div>
+      <div class="ap-price">$2,499/year individual · $9,999/year court system</div>
+    </div>
+    <div class="ap-visual">
+      <div class="apv-header">Judicial case overview</div>
+      <div class="apv-item">Case status<span class="apv-val apv-red">Non-compliant · Urgent</span></div>
+      <div class="apv-item">Parent A score (90 days)<span class="apv-val apv-teal">87 — Consistent</span></div>
+      <div class="apv-item">Parent B score (90 days)<span class="apv-val apv-red">29 — Non-compliant</span></div>
+      <div class="apv-item">Missed visits<span class="apv-val apv-red">7 of 18 (39%)</span></div>
+      <div class="apv-item">Support overdue<span class="apv-val apv-red">$850 · 22 days</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect" style="background:var(--surface);border-top:1px solid var(--border)">
+<div class="container">
+  <h2 class="section-title fade-up">What happens after you join.</h2>
+  <div class="expect-steps">
+    <div class="es-card fade-up"><div class="es-num">01</div><div class="es-title">You get a personal email from Jennifer</div><div class="es-body">Not an automated sequence. A personal note from the founder acknowledging your spot on the waitlist and asking what matters most to you about Accordly.</div></div>
+    <div class="es-card fade-up"><div class="es-num">02</div><div class="es-title">You shape what gets built</div><div class="es-body">Early access members receive a short survey about their specific situation — parallel parenting, high conflict, DV, attorney practice — and their feedback directly influences the final product.</div></div>
+    <div class="es-card fade-up"><div class="es-num">03</div><div class="es-title">You get first access at founder pricing</div><div class="es-body">When early access opens, waitlist members get first access at locked-in early pricing — guaranteed for the lifetime of your subscription. No price increases ever on your original plan.</div></div>
+  </div>
+</div>
+</section>
+
+<footer>
+  <div class="footer-logo">Accord<span>ly</span></div>
+  <div class="footer-links">
+    <a href="/">Home</a><a href="/features">Features</a><a href="/how-it-works">How It Works</a><a href="/pricing">Pricing</a><a href="/about">About</a><a href="/early-access">Early Access</a>
+  </div>
+  <div class="footer-copy">© 2026 Accordly · Patent Pending · Co-Parenting, Protected.</div>
+
+  <div style="margin-top:1rem"><a href="https://weather.com" style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.72rem;font-weight:700;color:#ff5c5c;border:1px solid rgba(255,92,92,0.25);padding:0.3rem 0.75rem;border-radius:6px;background:rgba(255,92,92,0.1);text-decoration:none">⚡ Safe Exit</a></div>
+</footer>
+
+<script>
+function submitForm(){
+  const em=document.getElementById('em').value.trim();
+  const re=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!re.test(em)){document.getElementById('em').style.borderColor='rgba(255,92,92,0.5)';return;}
+  fetch('/',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:new URLSearchParams({
+      'form-name':'early-access',
+      'first-name':document.getElementById('fn').value,
+      'last-name':document.getElementById('ln').value,
+      'email':em,
+      'role':document.getElementById('role').value,
+      'state':document.getElementById('state').value
+    }).toString()
+  }).catch(()=>{});
+  document.getElementById('ea-form').style.display='none';
+  document.getElementById('ea-success').style.display='block';
+}
+document.getElementById('em').addEventListener('keydown',e=>{if(e.key==='Enter')submitForm()});
+function showAud(id){
+  document.querySelectorAll('.aud-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.aud-panel').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('aud-'+id).classList.add('active');
+}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
