@@ -262,7 +262,7 @@ async function doLogin() {
     showSuccess('login-success', '✓ Signed in successfully. Redirecting to your dashboard...');
     setTimeout(() => {
       // Redirect to app — update this URL once your app is hosted
-      window.location.href = '/accordly-app.html';
+      window.location.href = '/accordly-login.html';
     }, 1000);
   } else if (status === 401) {
     showError('login-error', 'Incorrect email or password. Please try again.');
