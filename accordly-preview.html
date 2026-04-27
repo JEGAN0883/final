@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Accordly — AI-powered co-parenting compliance platform. See the platform before you commit. Early access for family law attorneys." />
+<title>Accordly — Platform Preview for Family Law Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:       #0B1828;
+  --navy-mid:   #122035;
+  --navy-card:  #172840;
+  --navy-light: #1D3050;
+  --teal:       #1ECAD3;
+  --teal-dim:   #15939A;
+  --teal-glow:  rgba(30,202,211,0.10);
+  --teal-glow2: rgba(30,202,211,0.05);
+  --accent:     #5EEAFF;
+  --white:      #EEF4FA;
+  --white-dim:  rgba(238,244,250,0.60);
+  --white-faint:rgba(238,244,250,0.08);
+  --border:     rgba(30,202,211,0.14);
+  --border-dim: rgba(238,244,250,0.08);
+  --success:    #3FDBA1;
+  --warn:       #FF8C5A;
+  --danger:     #E85D5D;
+  --radius:     12px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ══════════════════════════════
+   NAV
+══════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: rgba(11,24,40,0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo .wordmark-teal { color: var(--teal); }
+.logo-pulse {
+  width: 9px; height: 9px;
+  background: var(--teal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(30,202,211,0.5);
+  animation: ring 2.4s ease-out infinite;
+}
+@keyframes ring {
+  0%   { box-shadow: 0 0 0 0 rgba(30,202,211,0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(30,202,211,0); }
+  100% { box-shadow: 0 0 0 0 rgba(30,202,211,0); }
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--white-dim);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  padding: 9px 22px;
+  background: var(--teal);
+  color: var(--navy) !important;
+  border-radius: 7px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s !important;
+}
+.nav-cta:hover { background: var(--accent) !important; transform: translateY(-1px); color: var(--navy) !important; }
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(30,202,211,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(30,202,211,0.04) 0%, transparent 60%);
+}
+
+/* grid texture */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-dim) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-dim) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 100%);
+}
+
+.hero-inner { position: relative; max-width: 780px; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--teal-glow);
+  border: 1px solid rgba(30,202,211,0.3);
+  border-radius: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 28px;
+}
+.badge-dot {
+  width: 7px; height: 7px;
+  background: var(--teal);
+  border-radius: 50%;
+  animation: blink 1.8s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--white-dim);
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 auto 44px;
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.btn-primary {
+  padding: 15px 34px;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 9px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 28px rgba(30,202,211,0.25);
+}
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(30,202,211,0.4);
+}
+
+.btn-ghost {
+  padding: 15px 34px;
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+/* hero scroll indicator */
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--white-dim);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+}
+.scroll-arrow {
+  width: 24px; height: 24px;
+  border-right: 2px solid var(--teal-dim);
+  border-bottom: 2px solid var(--teal-dim);
+  transform: rotate(45deg);
+  animation: bounce 1.8s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.6; }
+  50% { transform: rotate(45deg) translateY(5px); opacity: 1; }
+}
+
+/* ══════════════════════════════
+   STAT BAR
+══════════════════════════════ */
+.stat-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--navy-mid);
+}
+.stat-cell {
+  padding: 32px 20px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-cell:hover { background: var(--teal-glow2); }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--teal);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--white-dim);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════ */
+section {
+  padding: 96px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+section.full-bleed {
+  max-width: none;
+  padding: 0;
+}
+
+.eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(24px, 3.5vw, 38px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
+}
+.section-sub {
+  font-size: 16px;
+  color: var(--white-dim);
+  max-width: 560px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ══════════════════════════════
+   FEATURES GRID
+══════════════════════════════ */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: 52px;
+}
+
+.feat-card {
+  background: var(--navy-card);
+  padding: 36px 32px;
+  transition: background 0.25s;
+  position: relative;
+}
+.feat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--teal-glow) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.feat-card:hover { background: var(--navy-light); }
+.feat-card:hover::after { opacity: 1; }
+
+.feat-icon {
+  width: 48px; height: 48px;
+  border-radius: 11px;
+  background: var(--teal-glow);
+  border: 1px solid rgba(30,202,211,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.feat-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+.feat-desc {
+  font-size: 13.5px;
+  color: var(--white-dim);
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════
+   DEMO MODULES
+══════════════════════════════ */
+.demo-section {
+  background: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.demo-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 48px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 52px;
+}
+
+.demo-card {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.demo-card-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--navy-light);
+}
+.demo-card-header .dot-row {
+  display: flex;
+  gap: 6px;
+}
+.dot-row span {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.dot-row .d1 { background: #E85D5D; }
+.dot-row .d2 { background: #FFB347; }
+.dot-row .d3 { background: #3FDBA1; }
+.demo-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white-dim);
+  text-transform: uppercase;
+  margin-left: 4px;
+}
+.demo-card-body { padding: 28px 24px; }
+
+/* FITNESS SCORES */
+.score-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.score-block {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.score-who {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  margin-bottom: 14px;
+}
+.ring-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ring-wrap {
+  position: relative;
+  width: 64px; height: 64px;
+  flex-shrink: 0;
+}
+.ring-wrap svg { transform: rotate(-90deg); }
+.ring-val {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+}
+.ring-info .status-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.chip {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.chip.ok { background: rgba(63,219,161,0.12); color: var(--success); border: 1px solid rgba(63,219,161,0.2); }
+.chip.warn { background: rgba(255,140,90,0.12); color: var(--warn); border: 1px solid rgba(255,140,90,0.2); }
+
+/* PAYMENT BARS */
+.pay-rows { display: flex; flex-direction: column; gap: 13px; }
+.pay-row { display: flex; align-items: center; gap: 14px; }
+.pay-month {
+  font-size: 11px;
+  color: var(--white-dim);
+  font-weight: 500;
+  min-width: 38px;
+}
+.bar-track {
+  flex: 1;
+  height: 7px;
+  background: var(--white-faint);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.bar-fill.ok   { background: var(--success); }
+.bar-fill.part { background: var(--warn); }
+.bar-fill.miss { background: var(--danger); width: 0% !important; }
+.pay-label {
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 46px;
+  text-align: right;
+}
+.pay-label.ok   { color: var(--success); }
+.pay-label.part { color: var(--warn); }
+.pay-label.miss { color: var(--danger); }
+
+/* MESSAGE THREAD */
+.msg-thread { display: flex; flex-direction: column; gap: 10px; }
+.msg {
+  max-width: 82%;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.msg.them {
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+.msg.me {
+  background: rgba(30,202,211,0.07);
+  border: 1px solid rgba(30,202,211,0.18);
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+  color: var(--white);
+}
+.msg.flagged {
+  border-color: rgba(232,93,93,0.35);
+  background: rgba(232,93,93,0.05);
+}
+.flag-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--danger);
+  background: rgba(232,93,93,0.1);
+  border: 1px solid rgba(232,93,93,0.25);
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-top: 7px;
+}
+.flag-tag.medium { color: var(--warn); background: rgba(255,140,90,0.1); border-color: rgba(255,140,90,0.25); }
+
+/* CALENDAR GRID */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.cal-head {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--white-dim);
+  padding: 4px 0;
+  letter-spacing: 0.06em;
+}
+.cal-day {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white-dim);
+  background: var(--white-faint);
+  position: relative;
+}
+.cal-day.pa { background: rgba(30,202,211,0.15); color: var(--teal); font-weight: 600; }
+.cal-day.pb { background: rgba(255,140,90,0.13); color: var(--warn); font-weight: 600; }
+.cal-day.deviation { outline: 2px solid var(--danger); outline-offset: -2px; }
+.cal-day.empty { background: transparent; }
+.cal-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--white-dim);
+}
+.leg-dot {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+}
+.leg-dot.pa { background: rgba(30,202,211,0.4); }
+.leg-dot.pb { background: rgba(255,140,90,0.4); }
+.leg-dot.dev { background: transparent; border: 2px solid var(--danger); }
+
+/* ══════════════════════════════
+   COURT REPORT
+══════════════════════════════ */
+.report-preview {
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 52px;
+}
+.report-bar {
+  background: var(--navy-light);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.report-bar-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white-dim);
+  text-transform: uppercase;
+}
+.report-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--success);
+}
+.report-status-dot {
+  width: 7px; height: 7px;
+  background: var(--success);
+  border-radius: 50%;
+}
+.report-body {
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.report-col-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-dim);
+  font-size: 13px;
+}
+.report-row:last-child { border-bottom: none; }
+.report-key { color: var(--white-dim); }
+.report-val { font-weight: 600; color: var(--white); }
+.report-val.ok   { color: var(--success); }
+.report-val.warn { color: var(--warn); }
+.report-val.bad  { color: var(--danger); }
+.report-footer {
+  padding: 20px 40px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy-light);
+}
+.gen-btn {
+  padding: 10px 22px;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 7px;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gen-btn:hover { background: var(--accent); }
+.report-note {
+  font-size: 12px;
+  color: var(--white-dim);
+  font-style: italic;
+}
+
+/* ══════════════════════════════
+   FOUNDER SECTION
+══════════════════════════════ */
+.founder-section {
+  background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy-card) 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.founder-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 96px 48px;
+  text-align: center;
+}
+.quote-mark {
+  font-family: 'Syne', sans-serif;
+  font-size: 72px;
+  line-height: 0.6;
+  color: var(--teal);
+  opacity: 0.3;
+  margin-bottom: 24px;
+  display: block;
+}
+.founder-quote {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+.founder-attr {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════
+   TRIAL CTA
+══════════════════════════════ */
+.cta-section {
+  text-align: center;
+  padding: 96px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse, rgba(30,202,211,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; max-width: 680px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.12;
+  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+}
+.cta-title em { font-style: normal; color: var(--teal); }
+.cta-sub {
+  font-size: 17px;
+  color: var(--white-dim);
+  font-weight: 300;
+  line-height: 1.72;
+  margin-bottom: 44px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+.cta-note {
+  font-size: 13px;
+  color: var(--white-dim);
+  font-style: italic;
+}
+
+/* ══════════════════════════════
+   CONTACT FORM
+══════════════════════════════ */
+.form-wrap {
+  max-width: 560px;
+  margin: 52px auto 0;
+  background: var(--navy-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+}
+.form-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 28px;
+  text-align: left;
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  background: var(--navy-light);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: 'Epilogue', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+.form-field input::placeholder,
+.form-field textarea::placeholder { color: rgba(238,244,250,0.35); }
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus { border-color: var(--teal); }
+.form-field textarea { resize: vertical; min-height: 90px; }
+.form-field select { color: var(--white); }
+.form-field select option { background: var(--navy-card); color: var(--white); }
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.submit-btn:hover { background: var(--accent); transform: translateY(-1px); }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  color: var(--success);
+  font-family: 'Syne', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--navy-mid);
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+}
+.footer-logo span { color: var(--teal); }
+.footer-text {
+  font-size: 12px;
+  color: var(--white-dim);
+  text-align: right;
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+  section { padding: 72px 28px; }
+  .demo-inner { padding: 72px 28px; }
+  .demo-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .report-body { grid-template-columns: 1fr; gap: 24px; }
+  .stat-bar { grid-template-columns: repeat(2,1fr); }
+  nav { padding: 0 24px; }
+  .nav-links { gap: 20px; }
+}
+@media (max-width: 600px) {
+  nav { padding: 0 18px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .score-pair { grid-template-columns: 1fr; }
+  .field-row { grid-template-columns: 1fr; }
+  .report-footer { flex-direction: column; gap: 12px; text-align: center; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .footer-text { text-align: center; }
+  .cta-section { padding: 72px 24px; }
+  .founder-inner { padding: 72px 24px; }
+  .form-wrap { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-logo">
+    <div class="logo-pulse"></div>
+    Accord<span class="wordmark-teal">ly</span>
+  </a>
+  <div class="nav-links">
+    <a href="#platform">Platform</a>
+    <a href="#modules">Modules</a>
+    <a href="#reports">Reports</a>
+    <a href="#contact" class="nav-cta">Request Access</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="top"></div>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge reveal">
+      <div class="badge-dot"></div>
+      Early Access — Family Law Professionals
+    </div>
+    <h1 class="reveal reveal-delay-1">The AI layer<br/>family law <em>has been<br/>missing.</em></h1>
+    <p class="hero-sub reveal reveal-delay-2">Accordly transforms high-conflict co-parenting cases into structured, court-ready intelligence — tracking compliance, communications, payments, and parenting plan adherence in one unified platform.</p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="#contact" class="btn-primary">Request Early Access Trial</a>
+      <a href="#modules" class="btn-ghost">See the Platform</a>
+    </div>
+    <div class="scroll-hint reveal reveal-delay-4">
+      <span>Explore below</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar" id="platform">
+  <div class="stat-cell reveal">
+    <span class="stat-num">8</span>
+    <div class="stat-label">Interconnected<br/>AI modules</div>
+  </div>
+  <div class="stat-cell reveal reveal-delay-1">
+    <span class="stat-num">AI</span>
+    <div class="stat-label">Real-time abuse<br/>detection engine</div>
+  </div>
+  <div class="stat-cell reveal reveal-delay-2">
+    <span class="stat-num">1‑click</span>
+    <div class="stat-label">Court-formatted<br/>report generation</div>
+  </div>
+  <div class="stat-cell reveal reveal-delay-3">
+    <span class="stat-num">0</span>
+    <div class="stat-label">Documentation<br/>gaps left behind</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="eyebrow reveal">What Accordly Does</div>
+  <h2 class="section-heading reveal reveal-delay-1">Every module your clients need.<br/>Every document you need.</h2>
+  <p class="section-sub reveal reveal-delay-2">Built from the ground up for high-conflict co-parenting — not adapted from generic case management software.</p>
+
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <div class="feat-icon">🧠</div>
+      <div class="feat-title">AI Dashboard & Parent Fitness Scoring</div>
+      <div class="feat-desc">Dynamic compliance scores for each parent, built from communication flags, payment history, schedule adherence, and behavioral patterns. Updated continuously. Court-exportable on demand.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-icon">💬</div>
+      <div class="feat-title">AI Messaging & Abuse Detection</div>
+      <div class="feat-desc">All co-parent communications are analyzed in real time. Coercive, threatening, and manipulative language is flagged with severity ratings, timestamps, and pattern documentation for court submission.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-icon">💳</div>
+      <div class="feat-title">Payment Plan Health Tracker</div>
+      <div class="feat-desc">Child support and financial obligation tracking with intelligent classification: On Track, Partial Payment, or At Risk — full audit history ready for court submission at any time.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-1">
+      <div class="feat-icon">📅</div>
+      <div class="feat-title">Shared Custody Calendar</div>
+      <div class="feat-desc">Parenting plan schedule tracking with deviation logging. Every missed exchange, late pickup, or schedule modification is automatically timestamped and available as compliance evidence.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-2">
+      <div class="feat-icon">📋</div>
+      <div class="feat-title">Court Report Generator</div>
+      <div class="feat-desc">One-click reports that synthesize all platform data — flagged messages, payment history, calendar deviations, fitness scores — into structured, attorney-ready documentation aligned with family court standards.</div>
+    </div>
+    <div class="feat-card reveal reveal-delay-3">
+      <div class="feat-icon">⚖️</div>
+      <div class="feat-title">Judicial Playbook & Child Profiles</div>
+      <div class="feat-desc">A research-backed reference module surfacing family court provisions and precedents. Paired with child profile and counseling report tools for comprehensive case documentation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO MODULES -->
+<div class="demo-section" id="modules">
+  <div class="demo-inner">
+    <div class="eyebrow reveal">Live Platform Samples</div>
+    <h2 class="section-heading reveal reveal-delay-1">See exactly what attorneys<br/>and clients work with.</h2>
+    <p class="section-sub reveal reveal-delay-2">These samples reflect real data structures from the Accordly platform — not mockups.</p>
+
+    <div class="demo-grid">
+
+      <!-- FITNESS SCORES -->
+      <div class="demo-card reveal">
+        <div class="demo-card-header">
+          <div class="dot-row"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <div class="demo-card-title">Parent Fitness Scores</div>
+        </div>
+        <div class="demo-card-body">
+          <div class="score-pair">
+            <div class="score-block">
+              <div class="score-who">Parent A</div>
+              <div class="ring-row">
+                <div class="ring-wrap">
+                  <svg width="64" height="64" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="25" fill="none" stroke="rgba(244,248,251,0.07)" stroke-width="6"/>
+                    <circle cx="32" cy="32" r="25" fill="none" stroke="#3FDBA1" stroke-width="6"
+                      stroke-dasharray="157" stroke-dashoffset="24" stroke-linecap="round"/>
+                  </svg>
+                  <div class="ring-val" style="color:#3FDBA1">85</div>
+                </div>
+                <div class="ring-info">
+                  <div class="status-label" style="color:var(--success)">Compliant</div>
+                  <div class="chip-row">
+                    <span class="chip ok">Payments ✓</span>
+                    <span class="chip ok">Schedule ✓</span>
+                    <span class="chip warn">1 Flag</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="score-block">
+              <div class="score-who">Parent B</div>
+              <div class="ring-row">
+                <div class="ring-wrap">
+                  <svg width="64" height="64" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="25" fill="none" stroke="rgba(244,248,251,0.07)" stroke-width="6"/>
+                    <circle cx="32" cy="32" r="25" fill="none" stroke="#FF8C5A" stroke-width="6"
+                      stroke-dasharray="157" stroke-dashoffset="79" stroke-linecap="round"/>
+                  </svg>
+                  <div class="ring-val" style="color:#FF8C5A">50</div>
+                </div>
+                <div class="ring-info">
+                  <div class="status-label" style="color:var(--warn)">Needs Review</div>
+                  <div class="chip-row">
+                    <span class="chip warn">3 Missed Pmts</span>
+                    <span class="chip warn">5 Flags</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT HEALTH -->
+      <div class="demo-card reveal reveal-delay-1">
+        <div class="demo-card-header">
+          <div class="dot-row"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <div class="demo-card-title">Payment Plan Health</div>
+        </div>
+        <div class="demo-card-body">
+          <div class="pay-rows">
+            <div class="pay-row">
+              <span class="pay-month">Jan</span>
+              <div class="bar-track"><div class="bar-fill ok" style="width:100%"></div></div>
+              <span class="pay-label ok">Paid</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-month">Feb</span>
+              <div class="bar-track"><div class="bar-fill ok" style="width:100%"></div></div>
+              <span class="pay-label ok">Paid</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-month">Mar</span>
+              <div class="bar-track"><div class="bar-fill part" style="width:58%"></div></div>
+              <span class="pay-label part">Partial</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-month">Apr</span>
+              <div class="bar-track"><div class="bar-fill miss"></div></div>
+              <span class="pay-label miss">Missed</span>
+            </div>
+            <div class="pay-row">
+              <span class="pay-month">May</span>
+              <div class="bar-track"><div class="bar-fill part" style="width:40%"></div></div>
+              <span class="pay-label part">Partial</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESSAGE ANALYSIS -->
+      <div class="demo-card reveal">
+        <div class="demo-card-header">
+          <div class="dot-row"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <div class="demo-card-title">AI Message Analysis</div>
+        </div>
+        <div class="demo-card-body">
+          <div class="msg-thread">
+            <div class="msg me">Can you confirm the Saturday 10am pickup per the parenting plan?</div>
+            <div class="msg them flagged">
+              I'll drop them off whenever I want. You don't get to make demands.
+              <div class="flag-tag medium">⚠ Coercive Language — Severity: Medium</div>
+            </div>
+            <div class="msg me">Please confirm. I've documented this request per our agreement.</div>
+            <div class="msg them flagged">
+              Keep documenting. Nobody cares. I control this schedule and I always will.
+              <div class="flag-tag">⚠ Control Pattern — Severity: High</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CUSTODY CALENDAR -->
+      <div class="demo-card reveal reveal-delay-1">
+        <div class="demo-card-header">
+          <div class="dot-row"><span class="d1"></span><span class="d2"></span><span class="d3"></span></div>
+          <div class="demo-card-title">Shared Custody Calendar</div>
+        </div>
+        <div class="demo-card-body">
+          <div class="cal-grid">
+            <div class="cal-head">S</div><div class="cal-head">M</div><div class="cal-head">T</div>
+            <div class="cal-head">W</div><div class="cal-head">T</div><div class="cal-head">F</div>
+            <div class="cal-head">S</div>
+            <!-- row 1 -->
+            <div class="cal-day empty"></div>
+            <div class="cal-day pa">1</div>
+            <div class="cal-day pa">2</div>
+            <div class="cal-day pa">3</div>
+            <div class="cal-day pb">4</div>
+            <div class="cal-day pb">5</div>
+            <div class="cal-day pb">6</div>
+            <!-- row 2 -->
+            <div class="cal-day pb">7</div>
+            <div class="cal-day pa">8</div>
+            <div class="cal-day pa">9</div>
+            <div class="cal-day pa">10</div>
+            <div class="cal-day pb">11</div>
+            <div class="cal-day pb deviation" title="Late pickup logged">12</div>
+            <div class="cal-day pb">13</div>
+            <!-- row 3 -->
+            <div class="cal-day pa">14</div>
+            <div class="cal-day pa">15</div>
+            <div class="cal-day pa deviation" title="Missed exchange">16</div>
+            <div class="cal-day pb">17</div>
+            <div class="cal-day pb">18</div>
+            <div class="cal-day pa">19</div>
+            <div class="cal-day pa">20</div>
+          </div>
+          <div class="cal-legend">
+            <div class="leg-item"><div class="leg-dot pa"></div>Parent A</div>
+            <div class="leg-item"><div class="leg-dot pb"></div>Parent B</div>
+            <div class="leg-item"><div class="leg-dot dev"></div>Deviation logged</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- COURT REPORT PREVIEW -->
+<section id="reports" style="padding-top:80px;padding-bottom:80px;">
+  <div class="eyebrow reveal">Court Report Generator</div>
+  <h2 class="section-heading reveal reveal-delay-1">One click from data<br/>to court-ready documentation.</h2>
+  <p class="section-sub reveal reveal-delay-2">Accordly synthesizes everything — compliance scores, flagged messages, payment history, calendar deviations — into a structured report your clients can hand their attorney.</p>
+
+  <div class="report-preview reveal reveal-delay-2">
+    <div class="report-bar">
+      <div class="report-bar-title">📄 Generated Report — Case #2024-FC-00847</div>
+      <div class="report-status"><div class="report-status-dot"></div>Ready to Export</div>
+    </div>
+    <div class="report-body">
+      <div>
+        <div class="report-col-title">Compliance Summary</div>
+        <div class="report-row"><span class="report-key">Parent A Fitness Score</span><span class="report-val ok">85 / 100 — Compliant</span></div>
+        <div class="report-row"><span class="report-key">Parent B Fitness Score</span><span class="report-val warn">50 / 100 — Needs Review</span></div>
+        <div class="report-row"><span class="report-key">Schedule Deviations (90 days)</span><span class="report-val warn">4 logged incidents</span></div>
+        <div class="report-row"><span class="report-key">Missed Exchanges</span><span class="report-val bad">2 documented</span></div>
+        <div class="report-row"><span class="report-key">Parenting Plan Adherence</span><span class="report-val warn">74%</span></div>
+      </div>
+      <div>
+        <div class="report-col-title">Financial & Communication</div>
+        <div class="report-row"><span class="report-key">Payments On Time (6 mo.)</span><span class="report-val ok">2 of 6</span></div>
+        <div class="report-row"><span class="report-key">Partial Payments</span><span class="report-val warn">3 months</span></div>
+        <div class="report-row"><span class="report-key">Missed Payments</span><span class="report-val bad">1 month</span></div>
+        <div class="report-row"><span class="report-key">Flagged Messages</span><span class="report-val warn">17 total flags</span></div>
+        <div class="report-row"><span class="report-key">High Severity Flags</span><span class="report-val bad">5 — Control patterns</span></div>
+      </div>
+    </div>
+    <div class="report-footer">
+      <div class="report-note">Generated by Accordly AI · Data period: Jan–Jun 2025 · Includes full message log appendix</div>
+      <button class="gen-btn">Export PDF Report</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER QUOTE -->
+<div class="founder-section">
+  <div class="founder-inner">
+    <span class="quote-mark reveal">"</span>
+    <p class="founder-quote reveal reveal-delay-1">Accordly is the blueprint to offload trauma, urgency, and logistics in a seamless way — without having to guess the path forward.</p>
+    <div class="founder-attr reveal reveal-delay-2">Jenn, Founder — Accordly · Seattle, WA</div>
+  </div>
+</div>
+
+<!-- CTA + FORM -->
+<div class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="eyebrow reveal">Early Access — No Commitment</div>
+    <h2 class="cta-title reveal reveal-delay-1">Ready to see what<br/><em>Accordly</em> can do<br/>for your practice?</h2>
+    <p class="cta-sub reveal reveal-delay-2">The early access trial is free. Explore the full platform with a real case load and decide if it fits — before any purchase decision.</p>
+    <div class="cta-buttons reveal reveal-delay-3">
+      <a href="mailto:[YOUR EMAIL]?subject=Accordly Early Access Request" class="btn-primary">Request Trial Access</a>
+      <a href="mailto:[YOUR EMAIL]?subject=Accordly 20-Minute Demo" class="btn-ghost">Schedule a 20-Min Demo</a>
+    </div>
+    <p class="cta-note reveal reveal-delay-4">Free trial · No credit card required · Built for high-conflict family law cases</p>
+
+    <!-- CONTACT FORM -->
+    <div class="form-wrap reveal reveal-delay-3">
+      <div class="form-title">Send a direct inquiry</div>
+      <div id="form-fields">
+        <div class="field-group">
+          <div class="field-row">
+            <div class="form-field">
+              <input type="text" placeholder="Your name" id="f-name" />
+            </div>
+            <div class="form-field">
+              <input type="text" placeholder="Firm name" id="f-firm" />
+            </div>
+          </div>
+          <div class="form-field">
+            <input type="email" placeholder="Email address" id="f-email" />
+          </div>
+          <div class="form-field">
+            <select id="f-interest">
+              <option value="" disabled selected>I'm interested in…</option>
+              <option>Early access trial for my clients</option>
+              <option>A 20-minute platform demo</option>
+              <option>Partnership / referral arrangement</option>
+              <option>Learning more before committing</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <textarea placeholder="Any questions or context (optional)" id="f-msg"></textarea>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitForm()">Send Inquiry</button>
+      </div>
+      <div class="form-success" id="form-success">
+        ✓ Thank you — we'll be in touch within 24 hours.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Accord<span>ly</span></div>
+  <div class="footer-text">
+    © 2025 Accordly · Seattle, WA<br/>
+    Platform preview · Early access only
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animate bars on entry
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.bar-fill').forEach(b => {
+        const w = b.style.width;
+        b.style.width = '0%';
+        setTimeout(() => { b.style.transition = 'width 0.9s ease'; b.style.width = w || '0%'; }, 100);
+      });
+      barObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.demo-card').forEach(el => barObserver.observe(el));
+
+// Animate rings
+const ringObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('circle[stroke-dashoffset]').forEach(c => {
+        const target = c.getAttribute('stroke-dashoffset');
+        const full = parseFloat(c.getAttribute('stroke-dasharray'));
+        c.setAttribute('stroke-dashoffset', full);
+        setTimeout(() => {
+          c.style.transition = 'stroke-dashoffset 1.1s ease';
+          c.setAttribute('stroke-dashoffset', target);
+        }, 200);
+      });
+      ringObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.score-pair').forEach(el => ringObserver.observe(el));
+
+// Form submission (mailto fallback)
+function submitForm() {
+  const name  = document.getElementById('f-name').value.trim();
+  const firm  = document.getElementById('f-firm').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const interest = document.getElementById('f-interest').value;
+  const msg   = document.getElementById('f-msg').value.trim();
+
+  if (!name || !email) {
+    alert('Please enter your name and email address.');
+    return;
+  }
+
+  const subject = encodeURIComponent('Accordly Early Access — ' + (interest || 'Inquiry'));
+  const body = encodeURIComponent(
+    `Name: ${name}\nFirm: ${firm}\nEmail: ${email}\nInterest: ${interest}\n\nMessage:\n${msg}`
+  );
+
+  window.location.href = `mailto:[YOUR EMAIL HERE]?subject=${subject}&body=${body}`;
+
+  document.getElementById('form-fields').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
