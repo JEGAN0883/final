@@ -1,3 +1,13 @@
 {
-  "version": 2
+  "version": 2,
+  "rewrites": [
+    { "source": "/early-access/accordly-login", "destination": "/early-access/accordly-login.html" },
+    { "source": "/early-access", "destination": "/early-access/index.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/accordly-preview", "destination": "/accordly-preview.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/features", "destination": "/features/index.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works/index.html" },
+    { "source": "/pricing", "destination": "/pricing/index.html" }
+  ]
 }
