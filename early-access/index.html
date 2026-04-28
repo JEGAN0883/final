@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="description" content="Sign in to your Accordly account — AI-powered co-parenting compliance and safety platform."/>
-<title>Sign In — Accordly</title>
+<meta name="description" content="Join the Accordly Early Access program — AI-powered co-parenting compliance and safety platform. Limited to 50 founding members."/>
+<title>Early Access — Accordly</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--red:#ff5c5c;--red-dim:rgba(255,92,92,0.1);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--muted2:#3a4a5a}
+:root{
+  --bg:#0b0f14;--surface:#131920;--surface2:#1a2330;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --teal:#00c9a7;--teal2:#008f72;
+  --teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);
+  --red:#ff5c5c;--red-dim:rgba(255,92,92,0.1);
+  --text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--muted2:#3a4a5a;
+  --gold:#f5c842;--gold-dim:rgba(245,200,66,0.1);
+}
 html{background:var(--bg);height:100%}
 body{min-height:100vh;color:var(--text);font-family:'Epilogue',sans-serif;display:flex;flex-direction:column}
 
@@ -24,41 +32,60 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 2rem;display
 @media(max-width:800px){.nav-links{display:none}.btn-s{display:none}}
 
 /* MAIN */
-.main{flex:1;display:flex;align-items:center;justify-content:center;padding:7rem 1.5rem 3rem;position:relative;overflow:hidden}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:7rem 1.5rem 4rem;position:relative;overflow:hidden}
 .bg-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);background-size:40px 40px;z-index:0}
-.bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(0,201,167,0.06),transparent 65%);z-index:0}
+.bg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(0,201,167,0.05),transparent 65%);z-index:0}
+
+.auth-wrap{position:relative;z-index:1;width:100%;max-width:460px}
+
+/* SPOTS COUNTER */
+.spots-banner{background:var(--gold-dim);border:1px solid rgba(245,200,66,0.25);border-radius:12px;padding:0.75rem 1.1rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem}
+.spots-icon{font-size:1.1rem;flex-shrink:0}
+.spots-text{font-size:0.78rem;color:var(--text2);line-height:1.5;flex:1}
+.spots-text strong{color:var(--gold);font-weight:700}
+.spots-bar-wrap{margin-top:6px}
+.spots-bar-track{height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.spots-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:3px;transition:width 1s ease}
 
 /* AUTH CARD */
-.auth-wrap{position:relative;z-index:1;width:100%;max-width:420px}
 .auth-card{background:var(--surface);border:1px solid var(--border2);border-radius:24px;padding:2.5rem;position:relative;overflow:hidden}
 .auth-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--teal2))}
 .auth-logo{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--text);text-align:center;margin-bottom:0.25rem}.auth-logo span{color:var(--teal)}
-.auth-tagline{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-align:center;font-weight:700;margin-bottom:2rem}
-.auth-title{font-family:'Syne',sans-serif;font-size:1.35rem;font-weight:900;color:var(--text);margin-bottom:0.3rem}
+.auth-tagline{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-align:center;font-weight:700;margin-bottom:1.75rem}
+.auth-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;color:var(--text);margin-bottom:0.3rem}
 .auth-sub{font-family:'Lora',serif;font-size:0.88rem;color:var(--text2);line-height:1.75;font-style:italic;margin-bottom:1.75rem}
 
-/* TABS */
-.auth-tabs{display:flex;background:var(--surface2);border-radius:10px;padding:3px;margin-bottom:1.75rem;gap:3px}
-.auth-tab{flex:1;padding:0.55rem;border-radius:8px;font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;background:none;color:var(--muted)}
-.auth-tab.active{background:var(--teal);color:#0b0f14}
+/* PERKS */
+.perks{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.75rem}
+.perk{display:flex;align-items:center;gap:0.6rem;font-size:0.78rem;color:var(--text2)}
+.perk-icon{color:var(--teal);font-size:0.85rem;flex-shrink:0}
 
-/* FORMS */
-.auth-form{display:none}.auth-form.active{display:block}
+/* FORM */
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:0.72rem;font-weight:600;color:var(--text2);margin-bottom:0.35rem;letter-spacing:0.02em}
-.field input,.field select{width:100%;padding:0.72rem 0.9rem;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:0.85rem;font-family:inherit;outline:none;transition:border-color 0.2s}
+.field input,.field select{width:100%;padding:0.72rem 0.9rem;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:0.85rem;font-family:inherit;outline:none;transition:border-color 0.2s;-webkit-appearance:none}
 .field input:focus,.field select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,201,167,0.08)}
 .field input::placeholder{color:var(--muted)}
+.field select option{background:var(--surface2);color:var(--text)}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
-.auth-btn{width:100%;padding:0.85rem;border-radius:12px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.92rem;font-weight:800;border:none;cursor:pointer;transition:all 0.2s;margin-top:0.25rem;display:flex;align-items:center;justify-content:center;gap:0.5rem}
-.auth-btn:hover{opacity:0.9;transform:translateY(-1px)}
-.auth-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+
+.auth-btn{width:100%;padding:0.9rem;border-radius:12px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:800;border:none;cursor:pointer;transition:all 0.2s;margin-top:0.25rem;display:flex;align-items:center;justify-content:center;gap:0.5rem;letter-spacing:0.02em}
+.auth-btn:hover{opacity:0.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,201,167,0.2)}
+.auth-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none}
 
 /* MESSAGES */
 .error-box{background:var(--red-dim);border:1px solid rgba(255,92,92,0.2);border-radius:8px;padding:0.65rem 0.85rem;font-size:0.75rem;color:var(--red);margin-bottom:1rem;display:none;line-height:1.5}
 .error-box.show{display:block}
-.success-box{background:var(--teal-dim2);border:1px solid rgba(0,201,167,0.25);border-radius:8px;padding:0.65rem 0.85rem;font-size:0.75rem;color:var(--teal);margin-bottom:1rem;display:none;line-height:1.5}
-.success-box.show{display:block}
+
+/* SUCCESS STATE */
+.success-state{display:none;text-align:center;padding:1rem 0}
+.success-state.show{display:block}
+.success-check{font-size:3rem;margin-bottom:1rem;animation:pop 0.4s ease}
+@keyframes pop{0%{transform:scale(0.5);opacity:0}80%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+.success-title{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;color:var(--teal);margin-bottom:0.5rem}
+.success-sub{font-family:'Lora',serif;font-style:italic;font-size:0.9rem;color:var(--text2);line-height:1.75;margin-bottom:1.5rem}
+.preview-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.5rem;background:var(--teal);color:#0b0f14;border-radius:10px;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:800;text-decoration:none;transition:all 0.2s}
+.preview-btn:hover{opacity:0.9;transform:translateY(-1px)}
 
 /* FOOTER LINKS */
 .auth-footer{margin-top:1.5rem;text-align:center}
@@ -88,15 +115,15 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <a class="nav-logo" href="https://final-accordlyapp.vercel.app/">Accord<span>ly</span></a>
   <div class="nav-links">
-    <a class="nav-link" href="/features">Features</a>
-    <a class="nav-link" href="/how-it-works">How It Works</a>
-    <a class="nav-link" href="/pricing">Pricing</a>
-    <a class="nav-link" href="/about">About</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/features">Features</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/how-it-works">How It Works</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/pricing">Pricing</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/about">About</a>
   </div>
   <div class="nav-right">
-    <a class="nav-btn btn-c" href="/early-access">Start Free</a>
+    <a class="nav-btn btn-s" href="https://final-accordlyapp.vercel.app/early-access/accordly-login">Sign In</a>
   </div>
 </nav>
 
@@ -104,67 +131,89 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
   <div class="bg-dots"></div>
   <div class="bg-glow"></div>
   <div class="auth-wrap">
+
+    <!-- SPOTS COUNTER -->
+    <div class="spots-banner">
+      <div class="spots-icon">🔒</div>
+      <div class="spots-text">
+        <strong id="spots-remaining">50 founding spots remaining</strong> — free trial before purchase
+        <div class="spots-bar-wrap">
+          <div class="spots-bar-track">
+            <div class="spots-bar-fill" id="spots-bar" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="auth-card">
       <div class="auth-logo">Accord<span>ly</span></div>
       <div class="auth-tagline">Co-Parenting, Protected.</div>
 
-      <!-- TABS -->
-      <div class="auth-tabs">
-        <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Sign In</button>
-        <button class="auth-tab" id="tab-register" onclick="switchTab('register')">Create Account</button>
-      </div>
+      <!-- FORM STATE -->
+      <div id="form-state">
+        <div class="auth-title">Request Early Access</div>
+        <div class="auth-sub">Join as a founding member and try the full platform free — before it goes public.</div>
 
-      <!-- LOGIN FORM -->
-      <div class="auth-form active" id="form-login">
-        <div class="auth-title">Welcome back</div>
-        <div class="auth-sub">Sign in to access your documentation, messages, and reports.</div>
-        <div class="error-box" id="login-error"></div>
-        <div class="success-box" id="login-success"></div>
-        <div class="field">
-          <label>Email address</label>
-          <input type="email" id="login-email" placeholder="you@example.com" autocomplete="email"/>
+        <div class="perks">
+          <div class="perk"><span class="perk-icon">✓</span> Full platform access — no credit card required</div>
+          <div class="perk"><span class="perk-icon">✓</span> AI messaging analysis, parent fitness scores & court reports</div>
+          <div class="perk"><span class="perk-icon">✓</span> Founding member pricing locked in at launch</div>
+          <div class="perk"><span class="perk-icon">✓</span> Direct line to the founder for feedback</div>
         </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="login-password" placeholder="Your password" autocomplete="current-password"/>
-        </div>
-        <button class="auth-btn" id="login-btn" onclick="doLogin()">Sign In →</button>
-      </div>
 
-      <!-- REGISTER FORM -->
-      <div class="auth-form" id="form-register">
-        <div class="auth-title">Create your account</div>
-        <div class="auth-sub">Free to start. Court-admissible from your very first message.</div>
-        <div class="error-box" id="register-error"></div>
-        <div class="success-box" id="register-success"></div>
+        <div class="error-box" id="form-error"></div>
+
         <div class="field-grid">
-          <div class="field"><label>First name</label><input type="text" id="reg-first" placeholder="First name" autocomplete="given-name"/></div>
-          <div class="field"><label>Last name</label><input type="text" id="reg-last" placeholder="Last name" autocomplete="family-name"/></div>
+          <div class="field">
+            <label>First name</label>
+            <input type="text" id="f-first" placeholder="First name" autocomplete="given-name"/>
+          </div>
+          <div class="field">
+            <label>Last name</label>
+            <input type="text" id="f-last" placeholder="Last name" autocomplete="family-name"/>
+          </div>
         </div>
+
         <div class="field">
           <label>Email address</label>
-          <input type="email" id="reg-email" placeholder="you@example.com" autocomplete="email"/>
+          <input type="email" id="f-email" placeholder="you@example.com" autocomplete="email"/>
         </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" id="reg-password" placeholder="Minimum 8 characters" autocomplete="new-password"/>
-        </div>
+
         <div class="field">
           <label>I am a</label>
-          <select id="reg-role">
-            <option value="parent">Parent</option>
-            <option value="attorney">Family Law Attorney</option>
-            <option value="mediator">Mediator / Parenting Coordinator</option>
-            <option value="judge">Judge / Guardian Ad Litem</option>
+          <select id="f-role">
+            <option value="" disabled selected>Select your role…</option>
+            <option value="Parent">Parent navigating co-parenting</option>
+            <option value="Family Law Attorney">Family Law Attorney</option>
+            <option value="Mediator / Parenting Coordinator">Mediator / Parenting Coordinator</option>
+            <option value="Guardian Ad Litem / Judge">Guardian Ad Litem / Judge</option>
+            <option value="Domestic Violence Advocate">Domestic Violence Advocate</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <button class="auth-btn" id="register-btn" onclick="doRegister()">Create Free Account →</button>
+
+        <button class="auth-btn" id="submit-btn" onclick="submitRequest()">
+          Request My Founding Spot →
+        </button>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="success-state" id="success-state">
+        <div class="success-check">✅</div>
+        <div class="success-title">You're on the list!</div>
+        <div class="success-sub">
+          Thank you for requesting early access to Accordly. We'll be in touch at your email address within 24 hours with your access details.<br/><br/>
+          In the meantime, explore the platform preview below.
+        </div>
+        <a class="preview-btn" href="https://www.accordlyparent.com/" target="_blank" rel="noopener">
+          🔍 View Platform Preview →
+        </a>
       </div>
 
       <!-- DV STRIP -->
       <div class="dv-strip">
         <div class="dv-strip-icon">🛡</div>
-        <div class="dv-strip-text">Experiencing domestic violence? <a class="dv-strip-link" href="https://www.thehotline.org">Free access available</a> · No documentation required · <strong style="color:var(--red)">1-800-799-7233</strong></div>
+        <div class="dv-strip-text">Experiencing domestic violence? <a class="dv-strip-link" href="https://www.thehotline.org" target="_blank" rel="noopener">Free access available</a> · No documentation required · <strong style="color:var(--red)">1-800-799-7233</strong></div>
       </div>
 
       <div class="auth-patent">Patent Pending · USPTO #75170980 · Not legal advice</div>
@@ -172,15 +221,16 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
 
     <div class="auth-footer">
       <div class="auth-footer-links">
-        <a class="auth-footer-link" href="/pricing">Pricing</a>
+        <a class="auth-footer-link" href="https://final-accordlyapp.vercel.app/pricing">Pricing</a>
         <div class="auth-divider"></div>
-        <a class="auth-footer-link" href="/features">Features</a>
+        <a class="auth-footer-link" href="https://final-accordlyapp.vercel.app/features">Features</a>
         <div class="auth-divider"></div>
         <a class="auth-footer-link" href="#">Privacy Policy</a>
         <div class="auth-divider"></div>
         <a class="auth-footer-link" href="#">Terms</a>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -191,133 +241,78 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
 </footer>
 
 <script>
-const API = 'https://considerate-alignment-production-3adb.up.railway.app';
+  const TOTAL_SPOTS = 50;
+  const SPOTS_TAKEN = 0; // ← update this number as signups come in
+  const remaining = TOTAL_SPOTS - SPOTS_TAKEN;
+  const pct = Math.round((SPOTS_TAKEN / TOTAL_SPOTS) * 100);
 
-function switchTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-  document.getElementById('form-' + tab).classList.add('active');
-  clearMessages();
-}
+  document.getElementById('spots-remaining').textContent =
+    remaining + ' of ' + TOTAL_SPOTS + ' founding spots remaining';
 
-function clearMessages() {
-  document.querySelectorAll('.error-box, .success-box').forEach(el => {
-    el.classList.remove('show');
+  setTimeout(() => {
+    document.getElementById('spots-bar').style.width = pct + '%';
+  }, 400);
+
+  function showError(msg) {
+    const el = document.getElementById('form-error');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+  function clearError() {
+    const el = document.getElementById('form-error');
     el.textContent = '';
-  });
-}
-
-function showError(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('show');
-}
-
-function showSuccess(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('show');
-}
-
-async function apiCall(method, path, body) {
-  try {
-    const res = await fetch(API + path, {
-      method,
-      headers: {'Content-Type': 'application/json'},
-      body: body ? JSON.stringify(body) : undefined,
-    });
-    return { ok: res.ok, status: res.status, data: await res.json().catch(() => ({})) };
-  } catch (e) {
-    return { ok: false, error: e.message };
+    el.classList.remove('show');
   }
-}
+  function setLoading(loading) {
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = loading;
+    btn.innerHTML = loading
+      ? '<div class="spinner"></div> Submitting…'
+      : 'Request My Founding Spot →';
+  }
 
-function setLoading(btnId, loading, defaultText) {
-  const btn = document.getElementById(btnId);
-  btn.disabled = loading;
-  btn.innerHTML = loading
-    ? '<div class="spinner"></div> Please wait...'
-    : defaultText;
-}
+  async function submitRequest() {
+    clearError();
+    const first = document.getElementById('f-first').value.trim();
+    const last  = document.getElementById('f-last').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const role  = document.getElementById('f-role').value;
 
-async function doLogin() {
-  clearMessages();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
-  if (!email) return showError('login-error', 'Please enter your email address.');
-  if (!password) return showError('login-error', 'Please enter your password.');
+    if (!first || !last) return showError('Please enter your first and last name.');
+    if (!email || !email.includes('@')) return showError('Please enter a valid email address.');
+    if (!role) return showError('Please select your role.');
 
-  setLoading('login-btn', true, 'Sign In →');
-  const { ok, status, data, error } = await apiCall('POST', '/api/v1/auth/login', { email, password });
-  setLoading('login-btn', false, 'Sign In →');
+    setLoading(true);
 
-  if (error) return showError('login-error', 'Cannot connect to server. Please check your connection and try again.');
+    const subject = encodeURIComponent('Accordly Early Access Request — ' + first + ' ' + last);
+    const body = encodeURIComponent(
+      'New early access request:\n\n' +
+      'Name: ' + first + ' ' + last + '\n' +
+      'Email: ' + email + '\n' +
+      'Role: ' + role + '\n\n' +
+      'Submitted from: final-accordlyapp.vercel.app/early-access\n' +
+      'Spots remaining: ' + remaining
+    );
 
-  if (ok && (data.access_token || data.token)) {
-    const token = data.access_token || data.token;
-    // Store token and redirect to app
-    sessionStorage.setItem('accordly_token', token);
-    sessionStorage.setItem('accordly_user', JSON.stringify(data.user || {}));
-    showSuccess('login-success', '✓ Signed in successfully. Redirecting to your dashboard...');
+    window.location.href =
+      'mailto:info@accordlyapp.com?subject=' + subject + '&body=' + body;
+
     setTimeout(() => {
-      // Redirect to app — update this URL once your app is hosted
-      window.location.href = '/index.html';
-    }, 1000);
-  } else if (status === 401) {
-    showError('login-error', 'Incorrect email or password. Please try again.');
-  } else if (status === 429) {
-    showError('login-error', 'Too many login attempts. Please wait 15 minutes and try again.');
-  } else {
-    showError('login-error', data.error || data.message || 'Sign in failed. Please try again.');
+      setLoading(false);
+      document.getElementById('form-state').style.display = 'none';
+      document.getElementById('success-state').classList.add('show');
+
+      const newRemaining = remaining - 1;
+      const newPct = Math.round(((SPOTS_TAKEN + 1) / TOTAL_SPOTS) * 100);
+      document.getElementById('spots-remaining').textContent =
+        newRemaining + ' of ' + TOTAL_SPOTS + ' founding spots remaining';
+      document.getElementById('spots-bar').style.width = newPct + '%';
+    }, 800);
   }
-}
 
-async function doRegister() {
-  clearMessages();
-  const first = document.getElementById('reg-first').value.trim();
-  const last = document.getElementById('reg-last').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const password = document.getElementById('reg-password').value;
-  const role = document.getElementById('reg-role').value;
-
-  if (!first || !last) return showError('register-error', 'Please enter your first and last name.');
-  if (!email) return showError('register-error', 'Please enter your email address.');
-  if (!password || password.length < 8) return showError('register-error', 'Password must be at least 8 characters.');
-
-  setLoading('register-btn', true, 'Create Free Account →');
-  const { ok, status, data, error } = await apiCall('POST', '/api/v1/auth/register', {
-    first_name: first, last_name: last, email, password, role, plan: 'safe'
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitRequest();
   });
-  setLoading('register-btn', false, 'Create Free Account →');
-
-  if (error) return showError('register-error', 'Cannot connect to server. Please check your connection and try again.');
-
-  if (ok && (data.access_token || data.token)) {
-    const token = data.access_token || data.token;
-    sessionStorage.setItem('accordly_token', token);
-    sessionStorage.setItem('accordly_user', JSON.stringify(data.user || {}));
-    showSuccess('register-success', '✓ Account created! Redirecting to your dashboard...');
-    setTimeout(() => {
-      window.location.href = '/app';
-    }, 1000);
-  } else if (status === 409) {
-    showError('register-error', 'An account with this email already exists. Please sign in instead.');
-    switchTab('login');
-    document.getElementById('login-email').value = email;
-  } else if (data.errors) {
-    showError('register-error', data.errors.map(e => e.msg).join(' · '));
-  } else {
-    showError('register-error', data.error || data.message || 'Registration failed. Please try again.');
-  }
-}
-
-// Enter key support
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Enter') return;
-  if (document.getElementById('form-login').classList.contains('active')) doLogin();
-  else doRegister();
-});
 </script>
 </body>
 </html>

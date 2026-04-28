@@ -88,15 +88,15 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <a class="nav-logo" href="https://final-accordlyapp.vercel.app/">Accord<span>ly</span></a>
   <div class="nav-links">
-    <a class="nav-link" href="/features">Features</a>
-    <a class="nav-link" href="/how-it-works">How It Works</a>
-    <a class="nav-link" href="/pricing">Pricing</a>
-    <a class="nav-link" href="/about">About</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/features">Features</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/how-it-works">How It Works</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/pricing">Pricing</a>
+    <a class="nav-link" href="https://final-accordlyapp.vercel.app/about">About</a>
   </div>
   <div class="nav-right">
-    <a class="nav-btn btn-c" href="/early-access">Start Free</a>
+    <a class="nav-btn btn-c" href="https://final-accordlyapp.vercel.app/early-access">Start Free</a>
   </div>
 </nav>
 
@@ -164,7 +164,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
       <!-- DV STRIP -->
       <div class="dv-strip">
         <div class="dv-strip-icon">🛡</div>
-        <div class="dv-strip-text">Experiencing domestic violence? <a class="dv-strip-link" href="https://www.thehotline.org">Free access available</a> · No documentation required · <strong style="color:var(--red)">1-800-799-7233</strong></div>
+        <div class="dv-strip-text">Experiencing domestic violence? <a class="dv-strip-link" href="https://www.thehotline.org" target="_blank" rel="noopener">Free access available</a> · No documentation required · <strong style="color:var(--red)">1-800-799-7233</strong></div>
       </div>
 
       <div class="auth-patent">Patent Pending · USPTO #75170980 · Not legal advice</div>
@@ -172,9 +172,9 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:1.5r
 
     <div class="auth-footer">
       <div class="auth-footer-links">
-        <a class="auth-footer-link" href="/pricing">Pricing</a>
+        <a class="auth-footer-link" href="https://final-accordlyapp.vercel.app/pricing">Pricing</a>
         <div class="auth-divider"></div>
-        <a class="auth-footer-link" href="/features">Features</a>
+        <a class="auth-footer-link" href="https://final-accordlyapp.vercel.app/features">Features</a>
         <div class="auth-divider"></div>
         <a class="auth-footer-link" href="#">Privacy Policy</a>
         <div class="auth-divider"></div>
@@ -256,13 +256,11 @@ async function doLogin() {
 
   if (ok && (data.access_token || data.token)) {
     const token = data.access_token || data.token;
-    // Store token and redirect to app
     sessionStorage.setItem('accordly_token', token);
     sessionStorage.setItem('accordly_user', JSON.stringify(data.user || {}));
     showSuccess('login-success', '✓ Signed in successfully. Redirecting to your dashboard...');
     setTimeout(() => {
-      // Redirect to app — update this URL once your app is hosted
-      window.location.href = '/index.html';
+      window.location.href = 'https://final-accordlyapp.vercel.app/dashboard.html'; // ✅ FIXED
     }, 1000);
   } else if (status === 401) {
     showError('login-error', 'Incorrect email or password. Please try again.');
@@ -299,7 +297,7 @@ async function doRegister() {
     sessionStorage.setItem('accordly_user', JSON.stringify(data.user || {}));
     showSuccess('register-success', '✓ Account created! Redirecting to your dashboard...');
     setTimeout(() => {
-      window.location.href = '/app';
+      window.location.href = 'https://final-accordlyapp.vercel.app/dashboard.html'; // ✅ FIXED
     }, 1000);
   } else if (status === 409) {
     showError('register-error', 'An account with this email already exists. Please sign in instead.');
