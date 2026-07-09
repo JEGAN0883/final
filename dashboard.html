@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dashboard — Accordly</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0b0f14;--surface:#131920;--surface2:#1a2330;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--teal:#00c9a7;--teal2:#008f72;--teal-dim:rgba(0,201,167,0.1);--teal-dim2:rgba(0,201,167,0.18);--red:#ff5c5c;--red-dim:rgba(255,92,92,0.1);--amber:#f5a623;--amber-dim:rgba(245,166,35,0.1);--text:#e8edf2;--text2:#a0b4c8;--muted:#5a6a7a;--muted2:#3a4a5a}
+html{background:var(--bg);height:100%}
+body{min-height:100vh;color:var(--text);font-family:'Epilogue',sans-serif;display:flex;flex-direction:column}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0.85rem 2rem;display:flex;align-items:center;justify-content:space-between;background:rgba(11,15,20,0.93);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:900;color:var(--text);text-decoration:none}.nav-logo span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-user{font-size:0.8rem;color:var(--text2);font-weight:500}
+.nav-btn{padding:0.42rem 1rem;border-radius:8px;font-size:0.8rem;font-family:inherit;cursor:pointer;background:none;border:1px solid var(--border2);color:var(--text2)}
+.nav-btn:hover{border-color:var(--red);color:var(--red)}
+.main{flex:1;padding:6rem 2rem 3rem;max-width:1100px;margin:0 auto;width:100%}
+.page-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:900;margin-bottom:1.5rem}
+.profile-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:1.5rem 1.75rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.profile-avatar{width:48px;height:48px;border-radius:50%;background:var(--teal-dim2);color:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem}
+.profile-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem}
+.profile-meta{font-size:0.78rem;color:var(--muted)}
+.profile-role{margin-left:auto;padding:0.3rem 0.75rem;border-radius:20px;background:var(--surface2);border:1px solid var(--border2);font-size:0.7rem;font-weight:700;text-transform:capitalize}
+.tabs{display:flex;gap:0.4rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.tab{padding:0.65rem 1.1rem;border:none;background:none;color:var(--muted);font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;border-bottom:2px solid transparent}
+.tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+.panel{display:none}
+.panel.active{display:block}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.section-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800}
+.add-btn{padding:0.55rem 1.1rem;border-radius:10px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-size:0.82rem;font-weight:800;border:none;cursor:pointer}
+.add-btn:hover{opacity:0.9}
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;overflow:hidden;margin-bottom:1.5rem}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:0.8rem 1.1rem;border-bottom:1px solid var(--border)}
+td{padding:0.85rem 1.1rem;font-size:0.82rem;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+.badge{display:inline-flex;padding:0.22rem 0.6rem;border-radius:20px;font-size:0.65rem;font-weight:700;text-transform:capitalize}
+.badge-red{background:var(--red-dim);color:var(--red)}
+.badge-amber{background:var(--amber-dim);color:var(--amber)}
+.badge-teal{background:var(--teal-dim2);color:var(--teal)}
+.badge-muted{background:var(--surface2);color:var(--text2)}
+.empty{padding:2.5rem;text-align:center;color:var(--muted)}
+.row-btn{background:none;border:1px solid var(--border2);color:var(--text2);border-radius:7px;padding:0.3rem 0.6rem;font-size:0.7rem;cursor:pointer}
+.row-btn:hover{border-color:var(--teal);color:var(--teal)}
+.modal-overlay{position:fixed;inset:0;background:rgba(11,15,20,0.75);backdrop-filter:blur(6px);z-index:500;display:none;align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay.show{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:20px;padding:2rem;width:100%;max-width:440px;max-height:88vh;overflow-y:auto}
+.modal-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:900;margin-bottom:1.1rem}
+.field{margin-bottom:0.9rem}
+.field label{display:block;font-size:0.7rem;font-weight:600;color:var(--text2);margin-bottom:0.3rem}
+.field input,.field select,.field textarea{width:100%;padding:0.65rem 0.85rem;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-size:0.83rem;font-family:inherit;outline:none}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem}
+.modal-actions{display:flex;gap:0.6rem;margin-top:1.2rem}
+.btn-primary{flex:1;padding:0.7rem;border-radius:10px;background:var(--teal);color:#0b0f14;font-family:'Syne',sans-serif;font-weight:800;font-size:0.83rem;border:none;cursor:pointer}
+.btn-secondary{flex:1;padding:0.7rem;border-radius:10px;background:none;border:1px solid var(--border2);color:var(--text2);font-family:'Syne',sans-serif;font-weight:700;font-size:0.83rem;cursor:pointer}
+.error-box{background:var(--red-dim);border:1px solid rgba(255,92,92,0.2);border-radius:8px;padding:0.55rem 0.75rem;font-size:0.73rem;color:var(--red);margin-bottom:0.9rem;display:none}
+.error-box.show{display:block}
+.no-relationship{background:var(--amber-dim);border:1px solid rgba(245,166,35,0.25);border-radius:12px;padding:1.1rem 1.3rem;font-size:0.85rem;color:var(--text2);margin-bottom:1.5rem}
+.no-relationship strong{color:var(--amber)}
+.msg-bubble{padding:0.9rem 1.1rem;border-bottom:1px solid var(--border)}
+.msg-bubble:last-child{border-bottom:none}
+.msg-meta{font-size:0.68rem;color:var(--muted);margin-bottom:0.3rem}
+.msg-content{font-size:0.85rem;line-height:1.5}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">Accord<span>ly</span></a>
+  <div class="nav-right">
+    <span class="nav-user" id="nav-user-name">—</span>
+    <button class="nav-btn" onclick="logout()">Sign Out</button>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="page-title">Your dashboard</div>
+
+  <div class="profile-card">
+    <div class="profile-avatar" id="profile-avatar">—</div>
+    <div>
+      <div class="profile-name" id="profile-name">—</div>
+      <div class="profile-meta" id="profile-email">—</div>
+    </div>
+    <div class="profile-role" id="profile-role">—</div>
+  </div>
+
+  <div class="card" id="coparent-card" style="padding:1.25rem 1.5rem;margin-bottom:1.5rem">
+    <div id="coparent-status">Checking co-parent link status…</div>
+    <div id="invite-form" style="display:none;margin-top:1rem">
+      <div class="error-box" id="err-invite"></div>
+      <div class="field"><label>Co-Parent's Email</label><input type="email" id="inv-email" placeholder="coparent@example.com"/></div>
+      <div class="field-grid">
+        <div class="field"><label>Case Number (optional)</label><input type="text" id="inv-case"/></div>
+        <div class="field"><label>Court State (optional)</label><input type="text" id="inv-state" placeholder="WA"/></div>
+      </div>
+      <div class="field"><label>Court Name (optional)</label><input type="text" id="inv-court"/></div>
+      <button class="add-btn" onclick="sendInvite()">Send Invite</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="payments" onclick="switchTab('payments')">Payments</button>
+    <button class="tab" data-tab="messages" onclick="switchTab('messages')">Messages</button>
+    <button class="tab" data-tab="calendar" onclick="switchTab('calendar')">Calendar</button>
+    <button class="tab" data-tab="violations" onclick="switchTab('violations')">Violations</button>
+    <button class="tab" data-tab="children" onclick="switchTab('children')">Children</button>
+    <button class="tab" data-tab="deadlines" onclick="switchTab('deadlines')">Court Deadlines</button>
+  </div>
+
+  <div class="panel active" id="panel-payments">
+    <div class="section-head"><div class="section-title">Support Payments</div><button class="add-btn" onclick="openPaymentModal()">+ Add Payment</button></div>
+    <div class="card"><table><thead><tr><th>Due</th><th>Ordered</th><th>Paid</th><th>Status</th><th></th></tr></thead><tbody id="payments-body"><tr><td colspan="5" class="empty">Loading…</td></tr></tbody></table></div>
+  </div>
+
+  <div class="panel" id="panel-messages">
+    <div class="section-head"><div class="section-title">Documented Messages</div><button class="add-btn" onclick="openMessageModal()">+ New Message</button></div>
+    <div class="card" id="messages-body"><div class="empty">Loading…</div></div>
+  </div>
+
+  <div class="panel" id="panel-calendar">
+    <div class="section-head"><div class="section-title">Calendar & Custody Events</div><button class="add-btn" onclick="openEventModal()">+ Add Event</button></div>
+    <div class="card"><table><thead><tr><th>Date</th><th>Title</th><th>Type</th><th>Location</th><th>Status</th></tr></thead><tbody id="calendar-body"><tr><td colspan="5" class="empty">Loading…</td></tr></tbody></table></div>
+  </div>
+
+  <div class="panel" id="panel-violations">
+    <div class="section-head"><div class="section-title">Violations</div><button class="add-btn" onclick="openViolationModal()">+ Log Violation</button></div>
+    <div class="card"><table><thead><tr><th>Date</th><th>Type</th><th>Severity</th><th>Description</th><th>Status</th></tr></thead><tbody id="violations-body"><tr><td colspan="5" class="empty">Loading…</td></tr></tbody></table></div>
+  </div>
+
+  <div class="panel" id="panel-children">
+    <div class="section-head"><div class="section-title">Children</div><button class="add-btn" onclick="openChildModal()">+ Add Child</button></div>
+    <div class="card" id="children-body"><div class="empty">Loading…</div></div>
+  </div>
+
+  <div class="panel" id="panel-deadlines">
+    <div class="section-head"><div class="section-title">Court Deadlines</div><button class="add-btn" onclick="openDeadlineModal()">+ Add Deadline</button></div>
+    <div class="card"><table><thead><tr><th>Due</th><th>Title</th><th>Type</th><th>Status</th><th></th></tr></thead><tbody id="deadlines-body"><tr><td colspan="5" class="empty">Loading…</td></tr></tbody></table></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-payment">
+  <div class="modal">
+    <div class="modal-title">Add Payment</div>
+    <div class="error-box" id="err-payment"></div>
+    <div class="field-grid">
+      <div class="field"><label>Amount Ordered</label><input type="number" step="0.01" id="p-amount"/></div>
+      <div class="field"><label>Due Date</label><input type="date" id="p-due"/></div>
+    </div>
+    <div class="field"><label>Notes</label><textarea id="p-notes" rows="2"></textarea></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-payment')">Cancel</button><button class="btn-primary" onclick="savePayment()">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-message">
+  <div class="modal">
+    <div class="modal-title">New Message</div>
+    <div class="error-box" id="err-message"></div>
+    <div class="field"><label>Message</label><textarea id="m-content" rows="4" placeholder="This will be AI-analyzed for tone before sending."></textarea></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-message')">Cancel</button><button class="btn-primary" onclick="sendMessage()">Send</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-event">
+  <div class="modal">
+    <div class="modal-title">Add Calendar Event</div>
+    <div class="error-box" id="err-event"></div>
+    <div class="field"><label>Title</label><input type="text" id="e-title"/></div>
+    <div class="field-grid">
+      <div class="field"><label>Type</label><select id="e-type"><option value="custody">Custody</option><option value="school">School</option><option value="medical">Medical</option><option value="activity">Activity</option><option value="other">Other</option></select></div>
+      <div class="field"><label>Location</label><input type="text" id="e-location"/></div>
+    </div>
+    <div class="field-grid">
+      <div class="field"><label>Start</label><input type="datetime-local" id="e-start"/></div>
+      <div class="field"><label>End</label><input type="datetime-local" id="e-end"/></div>
+    </div>
+    <div class="field"><label>Notes</label><textarea id="e-notes" rows="2"></textarea></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-event')">Cancel</button><button class="btn-primary" onclick="saveEvent()">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-violation">
+  <div class="modal">
+    <div class="modal-title">Log a Violation</div>
+    <div class="error-box" id="err-violation"></div>
+    <div class="field"><label>Type</label><input type="text" id="v-type" placeholder="e.g. missed pickup, communication"/></div>
+    <div class="field"><label>Severity</label><select id="v-severity"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option><option value="critical">Critical</option></select></div>
+    <div class="field"><label>Incident Date</label><input type="date" id="v-date"/></div>
+    <div class="field"><label>Description</label><textarea id="v-desc" rows="3"></textarea></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-violation')">Cancel</button><button class="btn-primary" onclick="saveViolation()">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-child">
+  <div class="modal">
+    <div class="modal-title">Add Child</div>
+    <div class="error-box" id="err-child"></div>
+    <div class="field-grid">
+      <div class="field"><label>First Name</label><input type="text" id="c-first"/></div>
+      <div class="field"><label>Last Name</label><input type="text" id="c-last"/></div>
+    </div>
+    <div class="field"><label>Date of Birth</label><input type="date" id="c-dob"/></div>
+    <div class="field"><label>School</label><input type="text" id="c-school"/></div>
+    <div class="field"><label>Allergies</label><input type="text" id="c-allergies"/></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-child')">Cancel</button><button class="btn-primary" onclick="saveChild()">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-wellness">
+  <div class="modal">
+    <div class="modal-title">Wellness Check-In / Medication</div>
+    <div class="error-box" id="err-wellness"></div>
+    <input type="hidden" id="w-child-id"/>
+    <div class="field"><label>Wellness Emoji (e.g. 🙂 😐 😢)</label><input type="text" id="w-emoji"/></div>
+    <div class="field"><label>Context Note</label><input type="text" id="w-context"/></div>
+    <hr style="border-color:var(--border);margin:1rem 0"/>
+    <div class="field"><label>Medication Name (optional)</label><input type="text" id="w-med-name"/></div>
+    <div class="field-grid">
+      <div class="field"><label>Dosage</label><input type="text" id="w-med-dose"/></div>
+      <div class="field"><label>Notes</label><input type="text" id="w-med-notes"/></div>
+    </div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-wellness')">Cancel</button><button class="btn-primary" onclick="saveWellness()">Save</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-deadline">
+  <div class="modal">
+    <div class="modal-title">Add Court Deadline</div>
+    <div class="error-box" id="err-deadline"></div>
+    <div class="field"><label>Title</label><input type="text" id="d-title" placeholder="e.g. File response to motion"/></div>
+    <div class="field-grid">
+      <div class="field"><label>Type</label><select id="d-type"><option value="filing">Filing</option><option value="hearing">Hearing</option><option value="mediation">Mediation</option><option value="response">Response Due</option><option value="other">Other</option></select></div>
+      <div class="field"><label>Due Date</label><input type="date" id="d-due"/></div>
+    </div>
+    <div class="field"><label>Notes</label><textarea id="d-notes" rows="2"></textarea></div>
+    <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('modal-deadline')">Cancel</button><button class="btn-primary" onclick="saveDeadline()">Save</button></div>
+  </div>
+</div>
+
+<script>
+const API = 'https://considerate-alignment-production-3adb.up.railway.app';
+const token = sessionStorage.getItem('accordly_token');
+const userRaw = sessionStorage.getItem('accordly_user');
+if (!token) window.location.href = '/early-access/accordly-login';
+const user = userRaw ? JSON.parse(userRaw) : {};
+let relationshipId = null;
+let children = [];
+
+function initials(n){ return n ? n.split(' ').map(p=>p[0]).join('').slice(0,2).toUpperCase() : '?'; }
+function money(n){ return '$' + Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function esc(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function logout(){ sessionStorage.clear(); window.location.href='/early-access/accordly-login'; }
+
+function renderProfile(){
+  const fullName = [user.first_name,user.last_name].filter(Boolean).join(' ') || user.email || 'Account';
+  document.getElementById('profile-name').textContent = fullName;
+  document.getElementById('profile-email').textContent = user.email || '';
+  document.getElementById('profile-role').textContent = user.role || 'parent';
+  document.getElementById('profile-avatar').textContent = initials(fullName);
+  document.getElementById('nav-user-name').textContent = fullName;
+}
+renderProfile();
+
+async function api(method, path, body){
+  try{
+    const res = await fetch(API+path,{
+      method, headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: body?JSON.stringify(body):undefined
+    });
+    if(res.status===401){ logout(); return {ok:false}; }
+    const data = await res.json().catch(()=>({}));
+    return {ok:res.ok, status:res.status, data};
+  }catch(e){ return {ok:false, error:e.message}; }
+}
+
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===name));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+name));
+}
+function closeModal(id){ document.getElementById(id).classList.remove('show'); }
+function openModal(id){ document.getElementById(id).classList.add('show'); }
+
+let currentRelationship = null;
+
+async function init(){
+  await loadRelationshipStatus();
+  loadPayments();
+  loadMessages();
+  loadCalendar();
+  loadViolations();
+  loadChildren();
+  loadDeadlines();
+}
+init();
+
+async function loadRelationshipStatus(){
+  const { ok, data } = await api('GET','/api/v1/users/relationships');
+  const statusEl = document.getElementById('coparent-status');
+  const formEl = document.getElementById('invite-form');
+  const rels = (ok && data.relationships) || [];
+
+  if(!rels.length){
+    relationshipId = null;
+    statusEl.innerHTML = '<strong style="color:var(--amber)">No co-parent linked yet.</strong> Invite your co-parent to start sharing documentation.';
+    formEl.style.display = 'block';
+    return;
+  }
+
+  currentRelationship = rels[0];
+  relationshipId = currentRelationship.id;
+  const myId = user.id;
+  const isParentA = currentRelationship.parent_a_id === myId;
+  const coparentName = isParentA ? currentRelationship.parent_b_name : currentRelationship.parent_a_name;
+
+  if(coparentName){
+    statusEl.innerHTML = '<strong style="color:var(--teal)">Linked with ' + esc(coparentName) + '.</strong> All shared features are active.';
+    formEl.style.display = 'none';
+  } else {
+    statusEl.innerHTML = '<strong style="color:var(--amber)">Invite sent to ' + esc(currentRelationship.invite_email || '') + '.</strong> Waiting for them to create an account with that email — this page will update automatically once they do.';
+    formEl.style.display = 'none';
+  }
+}
+
+async function sendInvite(){
+  const invite_email = document.getElementById('inv-email').value.trim();
+  const case_number = document.getElementById('inv-case').value.trim();
+  const court_name = document.getElementById('inv-court').value.trim();
+  const court_state = document.getElementById('inv-state').value.trim();
+  const err = document.getElementById('err-invite');
+  err.classList.remove('show');
+
+  if(!invite_email){ err.textContent='Enter your co-parent\'s email.'; err.classList.add('show'); return; }
+
+  const { ok, data } = await api('POST','/api/v1/users/relationships', {
+    invite_email, case_number: case_number||null, court_name: court_name||null, court_state: court_state||null
+  });
+
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not send invite.'; err.classList.add('show'); return; }
+
+  await loadRelationshipStatus();
+  loadPayments(); loadMessages(); loadCalendar(); loadViolations(); loadChildren(); loadDeadlines();
+}
+
+async function loadPayments(){
+  const body = document.getElementById('payments-body');
+  const { ok, data } = await api('GET','/api/v1/payments');
+  const payments = (ok && data.payments) || [];
+  if(!payments.length){ body.innerHTML = '<tr><td colspan="5" class="empty">No payments logged yet.</td></tr>'; return; }
+  body.innerHTML = payments.map(p=>`
+    <tr>
+      <td>${p.due_date?new Date(p.due_date).toLocaleDateString():'—'}</td>
+      <td>${money(p.amount_ordered)}</td>
+      <td>${money(p.amount_paid)}</td>
+      <td><span class="badge badge-${p.status==='paid'?'teal':p.status==='overdue'?'red':'amber'}">${p.status||'pending'}</span></td>
+      <td><button class="row-btn" onclick="deletePayment('${p.id}')">Delete</button></td>
+    </tr>`).join('');
+}
+function openPaymentModal(){ document.getElementById('err-payment').classList.remove('show'); openModal('modal-payment'); }
+async function savePayment(){
+  const amount_ordered = document.getElementById('p-amount').value;
+  const due_date = document.getElementById('p-due').value;
+  const notes = document.getElementById('p-notes').value;
+  const err = document.getElementById('err-payment');
+  if(!amount_ordered || !due_date){ err.textContent='Amount and due date required.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/payments',{ amount_ordered:Number(amount_ordered), due_date, notes: notes||null });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not save.'; err.classList.add('show'); return; }
+  closeModal('modal-payment'); loadPayments();
+}
+async function deletePayment(id){ if(!confirm('Delete this payment?'))return; await api('DELETE','/api/v1/payments/'+id); loadPayments(); }
+
+async function loadMessages(){
+  const body = document.getElementById('messages-body');
+  if(!relationshipId){ body.innerHTML = '<div class="empty">Link a co-parent to see messages.</div>'; return; }
+  const { ok, data } = await api('GET','/api/v1/messages/relationship/'+relationshipId);
+  const messages = (ok && data.messages) || [];
+  if(!messages.length){ body.innerHTML = '<div class="empty">No messages yet.</div>'; return; }
+  body.innerHTML = messages.map(m=>`
+    <div class="msg-bubble">
+      <div class="msg-meta">${esc(m.sender_name||'')} · ${new Date(m.created_at).toLocaleString()} ${m.ai_threat_level && m.ai_threat_level!=='none' ? `<span class="badge badge-red">${m.ai_threat_level}</span>`:''}</div>
+      <div class="msg-content">${esc(m.content)}</div>
+    </div>`).join('');
+}
+function openMessageModal(){ document.getElementById('err-message').classList.remove('show'); openModal('modal-message'); }
+async function sendMessage(){
+  const content = document.getElementById('m-content').value.trim();
+  const err = document.getElementById('err-message');
+  if(!relationshipId){ err.textContent='No linked co-parent relationship.'; err.classList.add('show'); return; }
+  if(!content){ err.textContent='Message cannot be empty.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/messages',{ relationship_id: relationshipId, content });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not send.'; err.classList.add('show'); return; }
+  document.getElementById('m-content').value='';
+  closeModal('modal-message'); loadMessages();
+}
+
+async function loadCalendar(){
+  const body = document.getElementById('calendar-body');
+  if(!relationshipId){ body.innerHTML = '<tr><td colspan="5" class="empty">Link a co-parent to see events.</td></tr>'; return; }
+  const { ok, data } = await api('GET','/api/v1/calendar/'+relationshipId);
+  const events = (ok && data.events) || [];
+  if(!events.length){ body.innerHTML = '<tr><td colspan="5" class="empty">No events yet.</td></tr>'; return; }
+  body.innerHTML = events.map(e=>`
+    <tr>
+      <td>${e.start_datetime?new Date(e.start_datetime).toLocaleString():'—'}</td>
+      <td>${esc(e.title)}</td>
+      <td>${esc(e.event_type||'')}</td>
+      <td>${esc(e.location||'—')}</td>
+      <td><span class="badge badge-muted">${e.status||'scheduled'}</span></td>
+    </tr>`).join('');
+}
+function openEventModal(){ document.getElementById('err-event').classList.remove('show'); openModal('modal-event'); }
+async function saveEvent(){
+  const title = document.getElementById('e-title').value.trim();
+  const event_type = document.getElementById('e-type').value;
+  const location = document.getElementById('e-location').value;
+  const start_datetime = document.getElementById('e-start').value;
+  const end_datetime = document.getElementById('e-end').value;
+  const notes = document.getElementById('e-notes').value;
+  const err = document.getElementById('err-event');
+  if(!relationshipId){ err.textContent='No linked co-parent relationship.'; err.classList.add('show'); return; }
+  if(!title || !start_datetime){ err.textContent='Title and start time required.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/calendar',{ relationship_id:relationshipId, title, event_type, start_datetime, end_datetime: end_datetime||null, location, notes });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not save.'; err.classList.add('show'); return; }
+  closeModal('modal-event'); loadCalendar();
+}
+
+async function loadViolations(){
+  const body = document.getElementById('violations-body');
+  if(!relationshipId){ body.innerHTML = '<tr><td colspan="5" class="empty">Link a co-parent to see violations.</td></tr>'; return; }
+  const { ok, data } = await api('GET','/api/v1/violations/relationship/'+relationshipId);
+  const violations = (ok && data.violations) || [];
+  if(!violations.length){ body.innerHTML = '<tr><td colspan="5" class="empty">No violations logged.</td></tr>'; return; }
+  body.innerHTML = violations.map(v=>`
+    <tr>
+      <td>${v.incident_date?new Date(v.incident_date).toLocaleDateString():'—'}</td>
+      <td>${esc(v.violation_type)}</td>
+      <td><span class="badge badge-${v.severity==='critical'||v.severity==='high'?'red':'amber'}">${v.severity}</span></td>
+      <td>${esc(v.description||'')}</td>
+      <td><span class="badge badge-muted">${v.status||'open'}</span></td>
+    </tr>`).join('');
+}
+function openViolationModal(){ document.getElementById('err-violation').classList.remove('show'); openModal('modal-violation'); }
+async function saveViolation(){
+  const violation_type = document.getElementById('v-type').value.trim();
+  const severity = document.getElementById('v-severity').value;
+  const incident_date = document.getElementById('v-date').value;
+  const description = document.getElementById('v-desc').value;
+  const err = document.getElementById('err-violation');
+  if(!relationshipId){ err.textContent='No linked co-parent relationship.'; err.classList.add('show'); return; }
+  if(!violation_type){ err.textContent='Type is required.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/violations',{ relationship_id:relationshipId, violation_type, severity, description, incident_date: incident_date||new Date().toISOString() });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not save.'; err.classList.add('show'); return; }
+  closeModal('modal-violation'); loadViolations();
+}
+
+async function loadChildren(){
+  const body = document.getElementById('children-body');
+  if(!relationshipId){ body.innerHTML = '<div class="empty">Link a co-parent to add children.</div>'; return; }
+  const { ok, data } = await api('GET','/api/v1/children/relationship/'+relationshipId);
+  children = (ok && data.children) || [];
+  if(!children.length){ body.innerHTML = '<div class="empty">No children added yet.</div>'; return; }
+  body.innerHTML = children.map(c=>`
+    <div class="msg-bubble" style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-weight:700">${esc(c.first_name)} ${esc(c.last_name||'')}</div>
+        <div class="msg-meta">${c.date_of_birth?new Date(c.date_of_birth).toLocaleDateString():''} ${c.school_name?'· '+esc(c.school_name):''}</div>
+      </div>
+      <button class="row-btn" onclick="openWellnessModal('${c.id}')">Log Check-In / Medication</button>
+    </div>`).join('');
+}
+function openChildModal(){ document.getElementById('err-child').classList.remove('show'); openModal('modal-child'); }
+async function saveChild(){
+  const first_name = document.getElementById('c-first').value.trim();
+  const last_name = document.getElementById('c-last').value.trim();
+  const date_of_birth = document.getElementById('c-dob').value;
+  const school_name = document.getElementById('c-school').value;
+  const allergies = document.getElementById('c-allergies').value;
+  const err = document.getElementById('err-child');
+  if(!relationshipId){ err.textContent='No linked co-parent relationship.'; err.classList.add('show'); return; }
+  if(!first_name){ err.textContent='First name required.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/children',{ relationship_id:relationshipId, first_name, last_name, date_of_birth: date_of_birth||null, school_name, allergies });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not save.'; err.classList.add('show'); return; }
+  closeModal('modal-child'); loadChildren();
+}
+function openWellnessModal(childId){
+  document.getElementById('w-child-id').value = childId;
+  document.getElementById('err-wellness').classList.remove('show');
+  openModal('modal-wellness');
+}
+async function saveWellness(){
+  const childId = document.getElementById('w-child-id').value;
+  const emoji = document.getElementById('w-emoji').value;
+  const context = document.getElementById('w-context').value;
+  const medName = document.getElementById('w-med-name').value;
+  const medDose = document.getElementById('w-med-dose').value;
+  const medNotes = document.getElementById('w-med-notes').value;
+  const err = document.getElementById('err-wellness');
+
+  if(emoji){
+    const r1 = await api('POST',`/api/v1/children/${childId}/wellness`,{ emoji, context: context||'after_transition' });
+    if(!r1.ok){ err.textContent=(r1.data&&(r1.data.error||r1.data.message))||'Could not save check-in.'; err.classList.add('show'); return; }
+  }
+  if(medName){
+    const r2 = await api('POST',`/api/v1/children/${childId}/medication`,{ medication_name: medName, dosage: medDose, notes: medNotes });
+    if(!r2.ok){ err.textContent=(r2.data&&(r2.data.error||r2.data.message))||'Could not save medication log.'; err.classList.add('show'); return; }
+  }
+  closeModal('modal-wellness');
+}
+
+async function loadDeadlines(){
+  const body = document.getElementById('deadlines-body');
+  if(!relationshipId){ body.innerHTML = '<tr><td colspan="5" class="empty">Link a co-parent to see deadlines.</td></tr>'; return; }
+  const { ok, data } = await api('GET','/api/v1/deadlines/'+relationshipId);
+  const deadlines = (ok && data.deadlines) || [];
+  if(!deadlines.length){ body.innerHTML = '<tr><td colspan="5" class="empty">No deadlines logged.</td></tr>'; return; }
+  body.innerHTML = deadlines.map(d=>`
+    <tr>
+      <td>${d.due_date?new Date(d.due_date).toLocaleDateString():'—'}</td>
+      <td>${esc(d.title)}</td>
+      <td>${esc(d.deadline_type||'')}</td>
+      <td><span class="badge badge-${d.is_completed?'teal':'amber'}">${d.is_completed?'completed':'pending'}</span></td>
+      <td>${d.is_completed?'':'<button class="row-btn" onclick="completeDeadline(\''+d.id+'\')">Mark Done</button>'}</td>
+    </tr>`).join('');
+}
+function openDeadlineModal(){ document.getElementById('err-deadline').classList.remove('show'); openModal('modal-deadline'); }
+async function saveDeadline(){
+  const title = document.getElementById('d-title').value.trim();
+  const deadline_type = document.getElementById('d-type').value;
+  const due_date = document.getElementById('d-due').value;
+  const notes = document.getElementById('d-notes').value;
+  const err = document.getElementById('err-deadline');
+  if(!relationshipId){ err.textContent='No linked co-parent relationship.'; err.classList.add('show'); return; }
+  if(!title || !due_date){ err.textContent='Title and due date required.'; err.classList.add('show'); return; }
+  const { ok, data } = await api('POST','/api/v1/deadlines',{ relationship_id:relationshipId, deadline_type, title, due_date, notes });
+  if(!ok){ err.textContent=(data&&(data.error||data.message))||'Could not save.'; err.classList.add('show'); return; }
+  closeModal('modal-deadline'); loadDeadlines();
+}
+async function completeDeadline(id){ await api('PATCH','/api/v1/deadlines/'+id,{ is_completed:true }); loadDeadlines(); }
+</script>
+</body>
+</html>
